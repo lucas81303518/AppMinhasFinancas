@@ -1,0 +1,28 @@
+unit UF_BaseCadastro;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  UF_BaseMenu, FMX.Objects, FMX.Controls.Presentation, FMX.Layouts;
+
+type
+  TF_BaseCadastro = class(TF_BaseMenu)
+    Layout1: TLayout;
+    Image1: TImage;
+    lblTitulo: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  F_BaseCadastro: TF_BaseCadastro;
+
+implementation
+
+{$R *.fmx}
+
+end.

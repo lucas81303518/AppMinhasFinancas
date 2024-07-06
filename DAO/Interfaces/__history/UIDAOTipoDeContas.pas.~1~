@@ -1,0 +1,11 @@
+unit UIDAOTipoDeContas;
+
+interface
+
+type
+  IDAOTipoDeContas = interface
+
+end;
+implementation
+
+end.
