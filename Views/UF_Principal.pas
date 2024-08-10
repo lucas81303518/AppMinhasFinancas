@@ -10,7 +10,11 @@ uses
 
 type
   TF_Principal = class(TF_BaseMenu)
+<<<<<<< HEAD
     S: TRectangle;
+=======
+    recSaldoAtual: TRectangle;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     Label1: TLabel;
     Rectangle1: TRectangle;
     imageOlhoSaldoAtual: TImage;
@@ -23,6 +27,10 @@ type
     recMetas: TRectangle;
     Label3: TLabel;
     lbMetas: TListBox;
+<<<<<<< HEAD
+=======
+    procedure FormCreate(Sender: TObject);
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
@@ -36,7 +44,11 @@ var
 implementation
 
 uses
+<<<<<<< HEAD
   Dmodulo;
+=======
+  Dmodulo, UF_ConfiguracaoAPI;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
 {$R *.fmx}
 
@@ -45,7 +57,22 @@ uses
 procedure TF_Principal.FormActivate(Sender: TObject);
 begin
   inherited;
+<<<<<<< HEAD
   MenuAtivo := TMenuAtivo.maPrincipal;
+=======
+  if not dmprincipal.Configuracoes.ConfigREST.ValidaConexaoAPI() then
+  begin
+    ShowMessage('Configure a conexão com a API');
+    F_ConfiguracaoAPI := TF_ConfiguracaoAPI.Create(Self);
+    F_ConfiguracaoAPI.Show;
+  end;
+end;
+
+procedure TF_Principal.FormCreate(Sender: TObject);
+begin
+  MenuAtivo := taHome;
+  inherited;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 end.

@@ -5,7 +5,11 @@ interface
 uses
   System.SysUtils, System.Classes, REST.Client, REST.Types, System.JSON,
   System.NetEncoding, REST.Authenticator.Basic, Model.Usuario,
+<<<<<<< HEAD
   System.IniFiles, System.IOUtils, IdHTTP, IdSSLOpenSSL, FMX.Forms;
+=======
+  System.IniFiles, System.IOUtils, IdHTTP, IdSSLOpenSSL;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
 type
 TConfigREST = class
@@ -15,6 +19,7 @@ TConfigREST = class
     FRequest: TRESTRequest;
     FResponse: TRESTResponse;
     FAuthenticator: THTTPBasicAuthenticator;
+<<<<<<< HEAD
     procedure ResetRequest;
   public
     constructor Create(const ABaseURL: string);
@@ -26,10 +31,29 @@ TConfigREST = class
     function Put(const AEndpoint: string; const ABody: TJSONObject): TRESTResponse;
     function Delete(const AEndpoint: string): TJSONObject;
     procedure ValidaConexaoAPI(OnExecutarDepois: TProc<Boolean>);
+=======
+  public
+    constructor Create(const ABaseURL, AUsername, APassword: string);
+    destructor Destroy; override;
+    function Get(const AEndpoint: string): TJSONArray; overload;
+    function Get(const AEndpoint, AParametro: string): TJSONObject; overload;
+    function Post(const AEndpoint: string; const ABody: TJSONObject): TJSONObject;
+    function Put(const AEndpoint: string; const ABody: TJSONObject): TJSONObject;
+    function Delete(const AEndpoint: string): TJSONObject;
+    function ValidaConexaoAPI: Boolean;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
     property BaseURL: string read FBaseURL write FBaseURL;
   end;
 
+<<<<<<< HEAD
+=======
+tconfigteste = class(TConfigREST)
+   public
+
+end;
+
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 TConfiguracoes = class
   private
     FConfigREST: TConfigREST;
@@ -60,16 +84,24 @@ TConfiguracoes = class
 
 var
   DmPrincipal: TDmPrincipal;
+<<<<<<< HEAD
   HashUser: string;
+=======
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
 implementation
 
 uses
+<<<<<<< HEAD
   UF_ConfiguracaoAPI, System.Threading, Loading;
+=======
+  UF_ConfiguracaoAPI;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
   
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
 {$R *.dfm}
+<<<<<<< HEAD
 procedure TConfigREST.ResetRequest;
 begin
   FRequest.Params.Clear;
@@ -79,15 +111,25 @@ begin
 end;
 
 constructor TConfigREST.Create(const ABaseURL: string);
+=======
+constructor TConfigREST.Create(const ABaseURL, AUsername, APassword: string);
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 begin
   inherited Create;
   FBaseURL := ABaseURL;
   FClient := TRESTClient.Create(FBaseURL);
   FRequest := TRESTRequest.Create(nil);
   FResponse := TRESTResponse.Create(nil);
+<<<<<<< HEAD
   FRequest.Client := FClient;
   FRequest.Response := FResponse;
   FRequest.ConnectTimeout := 5000;
+=======
+  FAuthenticator := THTTPBasicAuthenticator.Create(AUsername, APassword);
+  FClient.Authenticator := FAuthenticator;
+  FRequest.Client := FClient;
+  FRequest.Response := FResponse;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 destructor TConfigREST.Destroy;
@@ -99,6 +141,7 @@ begin
   inherited;
 end;
 
+<<<<<<< HEAD
 procedure TConfigREST.ValidaConexaoAPI(OnExecutarDepois: TProc<Boolean>);
 var
   Retorno: Boolean;
@@ -120,10 +163,28 @@ begin
       ResetRequest;
       OnExecutarDepois(Retorno);
     end;
+=======
+function TConfigREST.ValidaConexaoAPI: Boolean;
+begin
+  try
+    Result := False;
+    FRequest.Method := rmGET;
+    FRequest.Resource := 'teste';
+    FRequest.Execute;
+    if FResponse.StatusCode = 200 then
+      Result := True;
+  except on Ex: exception do
+    begin
+      ex.Message := 'Erro ao Validar Conexão API: ' + ex.Message;
+      raise;
+    end;
+  end;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 function TConfigREST.Get(const AEndpoint, AParametro: string): TJSONObject;
 begin
+<<<<<<< HEAD
   try
     FRequest.Resource := AEndpoint + '/' + AParametro ;
     FRequest.Method := rmGET;
@@ -134,10 +195,17 @@ begin
   finally
     ResetRequest;
   end;
+=======
+  FRequest.Resource := AEndpoint + '/' + AParametro ;
+  FRequest.Method := rmGET;
+  FRequest.Execute;
+  Result := TJSONObject.ParseJSONValue(FResponse.Content) as TJSONObject;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 function TConfigREST.Get(const AEndpoint: string): TJSONArray;
 begin
+<<<<<<< HEAD
   try
     FRequest.Resource := AEndpoint;
     FRequest.Method := rmGET;
@@ -183,10 +251,39 @@ begin
   finally
     ResetRequest;
   end;
+=======
+  FRequest.Resource := AEndpoint;
+  FRequest.Method := rmGET;
+  FRequest.Execute;
+  Result := TJSONObject.ParseJSONValue(FResponse.Content) as TJSONArray;
+end;
+
+function TConfigREST.Post(const AEndpoint: string; const ABody: TJSONObject): TJSONObject;
+begin
+  FRequest.Resource := AEndpoint;
+  FRequest.Method := rmPOST;
+  FRequest.Body.ClearBody;
+  FRequest.Params.Clear;
+  FRequest.Body.Add(ABody.ToString, TRESTContentType.ctAPPLICATION_JSON);
+  FRequest.Execute;
+  Result := TJSONObject.ParseJSONValue(FResponse.Content) as TJSONObject;
+end;
+
+function TConfigREST.Put(const AEndpoint: string; const ABody: TJSONObject): TJSONObject;
+begin
+  FRequest.Resource := AEndpoint;
+  FRequest.Method := rmPUT;
+  FRequest.Body.ClearBody;
+  FRequest.Params.Clear;
+  FRequest.Body.Add(ABody.ToString, TRESTContentType.ctAPPLICATION_JSON);
+  FRequest.Execute;
+  Result := TJSONObject.ParseJSONValue(FResponse.Content) as TJSONObject;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 function TConfigREST.Delete(const AEndpoint: string): TJSONObject;
 begin
+<<<<<<< HEAD
   try
     FRequest.Resource := AEndpoint;
     FRequest.Method := rmDELETE;
@@ -197,6 +294,12 @@ begin
   finally
     ResetRequest;
   end;
+=======
+  FRequest.Resource := AEndpoint;
+  FRequest.Method := rmDELETE;
+  FRequest.Execute;
+  Result := TJSONObject.ParseJSONValue(FResponse.Content) as TJSONObject;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 { TConfiguracoes }
@@ -205,7 +308,12 @@ begin
   inherited Create;  
   {$IFDEF MSWINDOWS}
     FArquivoIni := TPath.Combine(TPath.GetDirectoryName(ParamStr(0)), 'Config.ini');
+<<<<<<< HEAD
   {$ELSE}
+=======
+  {$ENDIF}
+  {$IFDEF ANDROID}
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     FArquivoIni := TPath.Combine(TPath.GetDocumentsPath, 'Config.ini');
   {$ENDIF}  
   Carregar;
@@ -225,7 +333,11 @@ begin
   try
     FIP := IniFile.ReadString('Configuracoes', 'IP', '192.168.3.10');
     FPorta := IniFile.ReadInteger('Configuracoes', 'Porta', 5000);
+<<<<<<< HEAD
     FConfigREST := TConfigREST.Create('http://' + FIP + ':' + FPorta.ToString);
+=======
+    FConfigREST := TConfigREST.Create('http://' + FIP + ':' + FPorta.ToString, 'teste', '123');
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
   finally
     IniFile.Free;
   end;

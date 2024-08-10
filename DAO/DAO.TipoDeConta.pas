@@ -22,7 +22,11 @@ end;
 implementation
 
 uses
+<<<<<<< HEAD
   Dmodulo, System.SysUtils, REST.Json;
+=======
+  Dmodulo, System.SysUtils;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
 { TDAOTipoDeConta }
 
@@ -32,7 +36,11 @@ var
 begin
   Result := False;
   JSONObject := MontaJson(aTipoConta);
+<<<<<<< HEAD
   Result := DmPrincipal.Configuracoes.ConfigREST.Post('TipoContas', JSONObject).StatusCode = 200;
+=======
+  Result := DmPrincipal.Configuracoes.ConfigREST.Post('TipoContas', JSONObject) <> nil;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 function TDAOTipoDeConta.Get(Id: Integer): TTipoConta;
@@ -77,13 +85,29 @@ end;
 
 function TDAOTipoDeConta.MontaJson(aTipoConta: TTipoConta): TJSONObject;
 begin
+<<<<<<< HEAD
   Result := TJSON.ObjectToJsonObject(aTipoConta);
   Result.RemovePair('id');
+=======
+  with aTipoConta do
+  begin
+    Result    := TJSONObject.Create;
+    Result.AddPair('NomeConta', NomeConta);
+    Result.AddPair('Tipo', Tipo);
+  end;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 function TDAOTipoDeConta.MontaObjeto(AJson: TJSONObject): TTipoConta;
 begin
+<<<<<<< HEAD
   Result := TJSON.JsonToObject<TTipoConta>(AJson);
+=======
+  Result := TTipoConta.Create;
+  Result.Id := AJson.GetValue<Integer>('id');
+  Result.NomeConta := AJson.GetValue<string>('nomeConta');
+  Result.Tipo := AJson.GetValue<Integer>('tipo');
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 function TDAOTipoDeConta.Update(aTipoConta: TTipoConta): Boolean;
@@ -92,7 +116,11 @@ var
 begin
   Result := False;
   JSONObject := MontaJson(aTipoConta);
+<<<<<<< HEAD
   Result := DmPrincipal.Configuracoes.ConfigREST.Put('TipoContas/' + aTipoConta.Id.ToString, JSONObject).StatusCode = 200;
+=======
+  Result := DmPrincipal.Configuracoes.ConfigREST.Put('TipoContas/' + aTipoConta.Id.ToString, JSONObject) <> nil;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end;
 
 end.

@@ -54,8 +54,12 @@ procedure TF_CadFormasPagamento.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   FControllerFormasPagamento.Free;
+<<<<<<< HEAD
   if Assigned(FFormaPagamento) then
     FFormaPagamento.Free;
+=======
+  FFormaPagamento.Free;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
   Action := TCloseAction.caFree;
   F_CadFormasPagamento := nil;
 end;

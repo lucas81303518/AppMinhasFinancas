@@ -31,7 +31,11 @@ var
 implementation
 
 uses
+<<<<<<< HEAD
   Dmodulo, System.Threading, Loading, UF_Login, UnitSplash;
+=======
+  Dmodulo;
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
 {$R *.fmx}
 
@@ -70,6 +74,7 @@ begin
   DmPrincipal.Configuracoes.IP    := edtIp.Text;
   DmPrincipal.Configuracoes.Porta := StrToInt(numberBoxPorta.Text);
   DmPrincipal.Configuracoes.Salvar;
+<<<<<<< HEAD
   TLoading.Show('Testando conexão com o Servidor...', F_ConfiguracaoAPI);
   DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI(
     procedure(Sucesso: Boolean)
@@ -88,4 +93,14 @@ begin
       Close;
     end);
 end;
+=======
+  if not DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI() then
+  begin
+    Showmessage('Erro com a conexão da API');
+    Exit;
+  end;
+  Close;
+end;
+
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end.

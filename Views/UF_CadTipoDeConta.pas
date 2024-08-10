@@ -9,7 +9,11 @@ uses
   Model.TipoDeConta, Controller.TipoDeContas;
 
 type
+<<<<<<< HEAD
   TTipoDocumento = (taTodos, tdEntrada, tdSaida);
+=======
+  TTIpoAcessoTipoConta = (taTodos, taSomenteEntrada, taSomenteSaida);
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 
 type
   TTipoContaIncluida = procedure of object;
@@ -38,7 +42,11 @@ type
     { Public declarations }
     property OnContaIncluida: TTipoContaIncluida read FContaIncluida write FContaIncluida;
     constructor Create(AOwner: TComponent; ATipoConta: TTipoConta = nil;
+<<<<<<< HEAD
                        Acesso: TTipoDocumento = taTodos);
+=======
+                       Acesso: TTIpoAcessoTipoConta = taTodos);
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
   end;
 
 var
@@ -49,17 +57,29 @@ implementation
 {$R *.fmx}
 
 constructor TF_CadTipoDeConta.Create(AOwner: TComponent;
+<<<<<<< HEAD
   ATipoConta: TTipoConta; Acesso: TTipoDocumento);
 begin
   inherited Create(AOwner);
   case Acesso of
     tdEntrada:
+=======
+  ATipoConta: TTipoConta; Acesso: TTIpoAcessoTipoConta);
+begin
+  inherited Create(AOwner);
+  case Acesso of
+    taSomenteEntrada:
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     begin
       rbEntrada.IsChecked := True;
       gbTipo.Enabled := False;
       edtDescricao.TextPrompt := 'Salário, Vale alimentação, etc...';
     end;
+<<<<<<< HEAD
     tdSaida:
+=======
+    taSomenteSaida:
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     begin
       rbSaida.IsChecked := True;
       gbTipo.Enabled := False;
@@ -75,8 +95,11 @@ end;
 procedure TF_CadTipoDeConta.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+<<<<<<< HEAD
   if Assigned(FTipoConta) then
     FTipoConta.Free;
+=======
+>>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
   FControllerTipoConta.Free;
   action := TCloseAction.caFree;
   F_CadTipoDeConta := nil;

@@ -1,0 +1,15 @@
+unit Controller.Documento;
+
+interface
+
+type
+  TControllerDocumento = class
+  private
+
+  public
+
+end;
+
+implementation
+
+end.
