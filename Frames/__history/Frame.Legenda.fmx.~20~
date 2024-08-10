@@ -1,0 +1,80 @@
+object FrameLegenda: TFrameLegenda
+  Align = Client
+  Size.Width = 175.000000000000000000
+  Size.Height = 69.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = claWhite
+    HitTest = False
+    Size.Width = 175.000000000000000000
+    Size.Height = 69.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Thickness = 0.000000000000000000
+    object Circulo: TCircle
+      Fill.Color = claSalmon
+      Position.X = 1.000000000000000000
+      Size.Width = 13.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Thickness = 0.000000000000000000
+    end
+    object lblPorcentagem: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 126.000000000000000000
+      Position.Y = 36.000000000000000000
+      Size.Width = 51.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.FontColor = xFF9C1A1A
+      TextSettings.WordWrap = False
+      Text = '100,0%'
+      TabOrder = 2
+    end
+    object lblTipoConta: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 16.000000000000000000
+      Position.Y = 4.000000000000000000
+      Size.Width = 211.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.WordWrap = False
+      Text = 'Titulo Tipo de Conta'
+      TabOrder = 3
+    end
+    object lblValorTotal: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 16.000000000000000000
+      Position.Y = 24.000000000000000000
+      Size.Width = 241.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.WordWrap = False
+      Text = 'R$'
+      TabOrder = 1
+    end
+    object Line1: TLine
+      LineType = Diagonal
+      Position.X = 17.000000000000000000
+      Position.Y = 20.000000000000000000
+      Size.Width = 131.000000000000000000
+      Size.Height = 1.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFFA6A6A6
+    end
+    object Rectangle2: TRectangle
+      Fill.Color = claLime
+      Position.X = 17.000000000000000000
+      Position.Y = 42.000000000000000000
+      Size.Width = 106.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Thickness = 0.000000000000000000
+      XRadius = 3.000000000000000000
+      YRadius = 3.000000000000000000
+    end
+  end
+end

@@ -1,0 +1,78 @@
+unit Controller.Usuario;
+
+interface
+
+uses
+  ULoginUsuario, DAO.Usuario, UCreateUsuario;
+
+type
+  TExecutarApos = procedure of object;
+
+  ControllerUsuario = class
+  private
+    FDAOUsuario: TDAOUsuario;
+    FExecutarApos: TExecutarApos;
+  public
+    function Login(DtoLogin: TLoginUsuario): string;
+    function Cadastrar(DtoCreate: TCreateUsuario): Boolean;
+    constructor Create;
+    destructor Destroy;
+
+    property OnExecutarApos: TExecutarApos read FExecutarApos write FExecutarApos;
+end;
+
+implementation
+
+uses
+  System.Threading, System.SysUtils, System.Classes, ThreadingEx;
+
+{ ControllerUsuario }
+
+function ControllerUsuario.Cadastrar(DtoCreate: TCreateUsuario): Boolean;
+var
+  messageError: string;
+begin
+  messageError := '';
+
+   TTaskEx.Run(
+    procedure
+    begin
+      raise Exception.Create('Erro ao Cadastrar usuário: ');
+      FDAOUsuario.Cadastrar(DtoCreate);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Queue(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.ExceptObj <> nil then
+            begin
+              messageError := LTaskEx.ExceptObj.ToString;
+            end;
+          end);
+        end
+    , OnlyOnFaulted).Wait;
+
+    if messageError <> '' then
+      raise Exception.Create('teste 123');
+end;
+
+constructor ControllerUsuario.Create;
+begin
+  inherited;
+  FDAOUsuario := TDAOUsuario.Create;
+end;
+
+destructor ControllerUsuario.Destroy;
+begin
+  FDAOUsuario.Destroy;
+  inherited;
+end;
+
+function ControllerUsuario.Login(DtoLogin: TLoginUsuario): string;
+begin
+  result := FDAOUsuario.Login(DtoLogin);
+end;
+
+end.

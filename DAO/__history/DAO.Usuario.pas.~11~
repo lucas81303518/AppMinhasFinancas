@@ -1,0 +1,38 @@
+unit DAO.Usuario;
+
+interface
+
+uses
+  ULoginUsuario;
+
+type
+  TDAOUsuario = class
+  private
+
+  public
+    function Login(DtoLogin: TLoginUsuario): string;
+end;
+
+implementation
+
+uses
+  Dmodulo, System.JSON, REST.Json, System.SysUtils, REST.Client;
+
+{ TDAOUsuario }
+function TDAOUsuario.Login(DtoLogin: TLoginUsuario): string;
+var
+  JSONLogin: TJSONObject;
+  response: TRESTResponse;
+begin
+  Result := '';
+  if DtoLogin <> nil then
+  begin
+    JSONLogin := TJson.ObjectToJsonObject(DtoLogin);
+    response := DmPrincipal.Configuracoes.ConfigREST.Post('Usuario/Login', JSONLogin);
+    if Response.StatusCode <> 200 then
+      raise Exception.Create('Usuário ou senha inválidos!');
+    Result := TJSON.JsonToObject<TJSONObject>(response.Content).GetValue('token');
+  end;
+end;
+
+end.

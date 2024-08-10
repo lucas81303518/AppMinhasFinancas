@@ -1,0 +1,149 @@
+unit UnitSplash;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects;
+
+type
+  TFrmSplash = class(TForm)
+    Image1: TImage;
+    Timer1: TTimer;
+    procedure FormShow(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+  private
+    procedure ValidaConexaoAPI;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmSplash: TFrmSplash;
+
+implementation
+
+{$R *.fmx}
+
+uses UF_Login, Loading, Dmodulo, UF_ConfiguracaoAPI, System.Threading;
+
+procedure TFrmSplash.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+    Action := TCloseAction.caFree;
+    FrmSplash := nil;
+end;
+
+procedure TFrmSplash.FormCreate(Sender: TObject);
+begin
+    Image1.Align := TAlignLayout.Center;
+end;
+
+procedure TFrmSplash.FormShow(Sender: TObject);
+begin
+    Timer1.Interval := 3000;
+    Timer1.Enabled := true;
+    image1.Opacity := 0;
+
+    Image1.Align := TAlignLayout.None;
+    Image1.AnimateFloat('Opacity', 1, 0.4);
+    Image1.AnimateFloatDelay('Position.Y', 0, 0.3, 2.5, TAnimationType.&In, TInterpolationType.Back);
+
+
+end;
+
+procedure TFrmSplash.ValidaConexaoAPI;
+begin
+  // Inicia a tarefa de validação da API
+  TTask.Run(
+    procedure
+    begin
+      try
+        // Verifica a conexão com a API
+        TThread.Synchronize(nil,
+          procedure
+          begin
+            TLoading.Show('Testando conexão com o Servidor...');
+//            TLoading.ChangeMessage('Testando conexão com o Servidor...');
+            Sleep(100);
+          end
+        );
+        DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI(
+          procedure(Sucesso: Boolean)
+          begin
+            // Esconde o formulário de carregamento e faz a sincronização na thread principal
+            TThread.Synchronize(nil,
+              procedure
+              begin
+                TLoading.Hide;
+                if not Sucesso then
+                begin
+                  ShowMessage('Configure a conexão com a API');
+                  F_ConfiguracaoAPI := TF_ConfiguracaoAPI.Create(Self);
+                  F_ConfiguracaoAPI.Show;
+                end
+                else
+                begin
+                  Timer1.Enabled := False;
+                  if not Assigned(F_Login) then
+                      Application.CreateForm(TF_Login, F_Login);
+                  Application.MainForm := F_Login;
+                  F_Login.Show;
+                  FrmSplash.Close;
+                end;
+              end
+            );
+          end, Self
+        );
+      except
+        on Ex: Exception do
+        begin
+          TThread.Synchronize(nil,
+            procedure
+            begin
+              TLoading.Hide;
+              ShowMessage('Erro: ' + Ex.Message);
+            end
+          );
+        end;
+      end;
+    end
+  );
+end;
+
+procedure TFrmSplash.Timer1Timer(Sender: TObject);
+begin
+  ValidaConexaoAPI;
+//  TLoading.Show('Testando conexão com o Servidor...', FrmSplash);
+//  TLoading.ChangeMessage('Testando conexão com o Servidor...');
+//  DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI(
+//    procedure(Sucesso: Boolean)
+//    begin
+//      TLoading.Hide;
+//      if not Sucesso then
+//      begin
+//        TThread.Synchronize(nil,
+//        procedure
+//        begin
+//          ShowMessage('Configure a conexão com a API');
+//          F_ConfiguracaoAPI := TF_ConfiguracaoAPI.Create(Self);
+//          F_ConfiguracaoAPI.Show;
+//        end);
+//      end
+//      else
+//      begin
+//        Timer1.Enabled := false;
+//
+//        if NOT Assigned(F_Login) then
+//            Application.CreateForm(TF_Login, F_Login);
+//
+//        Application.MainForm := F_Login;
+//        F_Login.Show;
+//        FrmSplash.Close;
+//      end;
+//    end, Self)
+end;
+
+end.

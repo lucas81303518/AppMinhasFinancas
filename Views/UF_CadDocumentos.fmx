@@ -1,0 +1,469 @@
+inherited F_CadDocumentos: TF_CadDocumentos
+  Caption = 'F_BaseCadastro1'
+  OnClose = FormClose
+  DesignerMasterStyle = 3
+  inherited recGeral: TRectangle
+    HitTest = False
+    inherited recMenu: TRectangle
+      inherited ImageUser: TImage
+        MultiResBitmap.Height = 34
+        MultiResBitmap.Width = 34
+      end
+      inherited imageMenu: TImage
+        MultiResBitmap.Height = 41
+        MultiResBitmap.Width = 41
+      end
+    end
+    inherited rectMenuLateral: TRectangle
+      inherited ImageMoney: TImage
+        MultiResBitmap.Height = 34
+        MultiResBitmap.Width = 34
+      end
+      inherited recMenuLateralPerfil: TRectangle
+        inherited Image2: TImage
+          MultiResBitmap.Height = 23
+          MultiResBitmap.Width = 23
+        end
+      end
+      inherited recMenuLateralSair: TRectangle
+        inherited Image6: TImage
+          MultiResBitmap.Height = 20
+          MultiResBitmap.Width = 20
+        end
+      end
+      inherited recMenuLateralGrafico: TRectangle
+        inherited Image5: TImage
+          MultiResBitmap.Height = 20
+          MultiResBitmap.Width = 20
+          MultiResBitmap = <
+            item
+              Width = 20
+              Height = 20
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000140000001408060000008D891D
+                0D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                015249444154384FD5943D4BC37010C69398B6200EE22EEAE0E02C388B8A522A
+                D2429DFD28CE7E180757275D0471707250910471899F20AFFFF8BB72689A8636
+                51077DE0E1EE9E7FEEE17279B1FE0FF23CDF36C69C121755FA19D42C27AEA8F4
+                2D381A7F0DB50C19DC166A3902B5C3DD6CC101ECA83CDB90C639B803F7A1AB5A
+                1BF6D2343D279E202D8B3E86AA1D52BA708FC6FB24491E38EB52CF130FA91F85
+                E43DB496B67CA16C48EA921F60761386E17B144501F96D966567C4BB388E5F39
+                3FAA3413140D09B29FAE4C2546D47DA931790B822052B35DB94EDB275132DCC4
+                CC832FD4436AD9A3B0CF84976832D9F4FD170DE180C60B6D6CEB25B286165C80
+                A387331525C30E5C17033DAE8DCAB11DC789E0B36DDB894AB551EBC56E82A2A1
+                F17DDF30D51AB7BADA90933F14C4639EEA93E77986BC1164FF6A637D7E9F884B
+                4C27EFD606E5D8773B0BF45DC32B2DFF342CEB03B9C0A8E2DA40EFC400000000
+                49454E44AE426082}
+              FileName = 'D:\AppMinhasFinancas\trunk\Images\icons8-gr'#225'fico-24 2.png'
+            end>
+        end
+      end
+      inherited recMenuLateralCadastrar: TRectangle
+        inherited Image4: TImage
+          MultiResBitmap.Height = 100
+          MultiResBitmap.Width = 100
+          MultiResBitmap = <
+            item
+              Width = 100
+              Height = 100
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000006400000064080600000070E295
+                54000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                0B0449444154785EED9DE98F1C4719873DEBF191783DEBE0953F58F8484C6CCB
+                48086108081C2E3B18230C02244248D6241212420E4108A15820A170041C0146
+                C017401131B6A24421287F40383E9104110E2125D8B9D60918ECC5F16ED63B78
+                8FB1CDF376FFA63D5DDDEB999DB367A61EA955D555D55D6FBDD5757557552FF2
+                783C1E8FA74E723233CBA54B9796636CC5DC8CB905D3ECD7615F81B9A2542A5D
+                333939B9C2C2160A85623E9F1FCFE572454EA73047398E613F8EF91CE631CC69
+                0BEBA911949CE7D87EF1E2C5BB2F5CB8F0F8F8F8F879CE9BC2E8E8E81CC6D31C
+                07397611C73245EBA904E50C9882C88023535353E7B0B7058B8B387F49C6ECE4
+                7440E2F42F28613DC7C1D9D9D97F9A823A89C940E67C17EB7A89D7113AD286F0
+                445E4FC20F9C3A756A64EDDAB54BE43C2FB4132F0D0C0C3C83B5DC161CE738CB
+                51E47C02738AC318E4BEAB30AD4D59CDB199736B7BB612E736DA176B7BAEC8D8
+                D8D8ECF0F0F051EE7B90385F90736F8272AEE3297C88BABC847D5E785A5F21DC
+                03287184E3F5BABC61EC5E1CFB88E270B552693222C38384BF5697F70EA46F09
+                09FBE2B973E7A6C2E42629168BAFA18023587771B4A5E412CF76E2FCD1F4F4F4
+                1993218D898989FF61DC83FCBDD10120211F989B9B7B2E4C5E12FC9EB1A796E3
+                2A5DD2762C6E93C164915809F03B8EB14B97741F086FDDD77B28FA172C412EB4
+                0B7F3325605DAC4B3A0EB2E490692FB2FD3110D281B45CB4128575A92EE90E10
+                78E37C89A2EE3E49A26F56D0CC828CB798AC123B06697B12FF0D0A9A6D1074CF
+                F9F3E7C7257B840DCA78BA0EE1BF5241330FB21690F98726BB9211411ACFE2BF
+                5B41B30902EE3B79F2E4AC648EB03604BFB72858D74112B69386E7C3D45CC6D2
+                4ABA6E53B06C816077A5B5173C61BFC6B0B1415743FA56929687C2545DC6DA15
+                F88A82650304FDB6E48BB0628EA09F57909E8134ED4FABC2D0C1B714A4B320E0
+                9D9229E2CC9933D3B87F5C417A0ED2B6777272B2A8E446E0FE6505E90C0870AB
+                5B4DA941DFA1203D0B697F3B03CAFF86A90EB1EA0BE37605692F08B4C76DC0D5
+                F3789382F43C96564BB3921FA086BEBDBD2FE25D8F20AF862284E81543CF970C
+                172B29EE2B2165D24605692D44B48481D11341CC82A25A42B08F2948DF41DA3F
+                EC36F41A18B77E444F6FE25018E56510A8E77A530B051D243A37E8EA7BF26E0D
+                447A931AAE08227D58DE7D0FBAF895D41260BA829DF26E2EDC7819A3D5638A2B
+                C046AFB81714A4EF41172BF55638426F299AFFEA9E9B7E5D7104589D895BD7BE
+                0E6915E8E46DD6A64A4D01B87D55DECD811B6E70074214CF1FC8DBE3806EEC15
+                7D84F540D161F3BE3C1241EC1D8E5EA177CD5BDB76838A86666666FE136A2B04
+                1D1E957763A0F8CD294530F3DF333A0D3ABA55EA0A5015BF49DEF543CEFE42F7
+                0CA07FFD178CCCCF78CC02E8EACFA1D642D0E5CFE5551FE4E8BAD3A74FCFE87E
+                01B8F5ED0070A1A0AB4F4A6D017AAD52FF9746EE61532E23E8C2D924003FC3AF
+                464C57E8EC1F81F204A5E43BF25E185C3BE0CE5D2277F7C9DB5323A8EDF6507B
+                21E8F4658C853FD45C64F3A32A9920433A3655673E90E9A3D3D3D363F46A4E63
+                FF889C33037ABBBA582C4E862A0C41CEF7CBBB76285A36692D82F3FBE595292A
+                678660FF979C3305BA7B402206D8B9BC6A836B96BAB3D0C9D577CB3B5348BC08
+                39670A2B11122FC0666962549DD31CC10D6E0C2F0DE1C97B0523935DDD50C2CB
+                C839532096B5C7B1395EE8F85DF28E91DAB8E472B9D81BCAC58B17FF06B74C26
+                B61B407717D1E16F755AE67D3263A46608755C2C3037FCBDAC9E3A7175482149
+                CD900414A5AB6CD64858B042706BDA928066231123E49C3910CD16274568A99E
+                AD9FBC32047A7370856060F3A2BC3289C48C9073264197A3123380073D312124
+                5165116E8BAC015AB9E46902E8F25959CBD8EAAE18696D482C43C0968F799A83
+                AB4B57D7D54B088D91CF9026E1EAD2D5B5919621EE7CA2E7657A1AC716AC46A0
+                EBC457C4B42ACB9DB47046A6A7715E9559263141249121B4FCEEA7D9F292634F
+                E39C93194009497C064FCB904159CBB4254388F7436EB7B0167479849C6BC6E2
+                24EE3DBABCD54CCA0C60005E7D5E82FB8510DAB2C051EFCB3A42BBDE1293F1CB
+                1465800DC0E51591D686783A482243868686AAD673AD209FCF7FAE542A8DEAB4
+                6D589CC4FD599DB69A587330383818D3752A14DF1361810AA198657AF9AFC48C
+                9073264197D74ACC00DAAF97E4159128210CEFDD5C731B794FFDC46A1B068A89
+                1292D686BC26B3CCB04C4FE3D80E4595C47A5D462243C8B597652D73BD4C4FE3
+                C45E26A2EB449B99962155DFB778EAC3D5A5AB6B23ADCAAAFA46D25337AE2E6B
+                CA10DBC533829EC11B65F53408BADC266B99448624A0582D4FF984BB4EDE9943
+                2246C83973D8F0412206D8275CDC122BABD2DA90E9D5AB573FA5D332B57D90F7
+                5C89D84C9E42A1F004438C199D46A45559F6D4D53743C2332FAE0E79F07F276B
+                75B878074704A3779B74ED27CAD509620DCCCCCCFC3B943084EAEA9DF2AE0EE1
+                97A64C107E8FBC3385C48B9073A64077B65173C495A692A6565914A7D9E5CB97
+                3FA6D3006E30226BA628954A27640D5E14CA9A29D0674C77E8F651DCE6745A1B
+                69B98A5B169723ECB12AD50EEC1F947366407569CB1116DE26739D5FB0D30450
+                5B7316EC1817C2BDD023E6FC92B60561BA4267EE92B67BE5BD702811698B3E7B
+                76A7B86683AE6E96DA02B4BF58639BFD93A3F787B70BA1E1FC2B865F165D05D3
+                11BA729745FF54DEF5432E6FB245EFBA67006E9F92B7671ED0D188D415609B2F
+                E0F60679370639FBA0EE1B60831C6EEE77019A0754645B6B9C0AB515820E8FC8
+                BB71B8DF7A771B3B2238246F8F03BAF989D414A08D7B9ABBE51F25E26BE1ED43
+                548D6D97B747A0A71BDCBD61E080BC9B07375DEA76E1387F01634841FA1E74B1
+                0A9DBC182847707E9C4C6ACDBF47B8FF2E723FB6C51F3C22EFBE87AAEA51E924
+                C07405AD7D534EA4DF577C1144BA5FDE7D0B3AB84BEA884057F7C9BB75104F9E
+                FEF51FC22843D4A5EBDB012369DFAB3635021D3D8551FBE6008D8000EBDCFF36
+                691BBB1B15A46F20CDEF70B73F6CEB46CA651064B7DF6A3CB9D5B8BD6AC2FD26
+                05692F447C0B4535B1193FEE3D5F524863EA66FCF01905E90C08B05FF244E877
+                159F50909E83B4EDD55EF73170FF928274167A13DF944C11D6C821E09D0AD233
+                9026FB9350E2C798E8E01B0A920D10F40B6EF56520E86318D72858D742FAEC07
+                610F87A9BA8CAAA96CFDF2A80C82DDE636F4868DE8F17BAB82751DC87E833B02
+                37D4807F5AC1B20902EEA6618FFD5BC4B062CE13663B3E77CDAB169315997F9C
+                564559B79FB476A637B55010740303A327257B0CDBF1197FDB6438B31FB94C36
+                641C315903A11D6C608C7F66A7D7A682DCD57EBDFA771295B55FAF0E2093FD7A
+                F54F81900ED65EA894B76704DE0A48E04EEADFD86F2E2AC1CFDE20DBCC8CAB75
+                49DBB1B891F30EC9920A7ECF12A637A6D4929EE0F7DDEEC69A95A85FFF883DA1
+                982D2F35C431C0B18327FE67EEBCA94AF45AA4777EDF5D0909DB88028E52F413
+                3F66ACC43E1113CEB6A9B592D3D82C8D0A50EA068E3B4C068B23886C1E4C46C9
+                D0B4F86BA1230D2B4AD944420F30A2DFB766CD9AAA3B4550A79FD0E65FC7306D
+                918BFD9FFD6C2E97B3CFCA13665A38EC83D857C97C1DE6160E5BD7B79538B7E5
+                F3F9AA2FFCC6C6C6668787870F13CF7DDC23B16CB9A74149EB780AEF9DEDE0B6
+                1A656C46A1C9824C99DD5FB26DA00FEBDDD866C3873533BC2D585C6482FD8EE3
+                BD1C7E46661A286631C77632E86E94F5B876EF6C0A6ABB9EE6B0BF3ED8DEF66D
+                D9586721647E06221963BD9B2DD4E7417BC0B195C376621BC45C49FBB28A9E50
+                B0DB44A15098A29DB036C5764898B23680C3DA9CA0DD31336D1999C7E3F1783C
+                DDCFA245FF070A49C06D11BD07BA0000000049454E44AE426082}
+              FileName = 'D:\AppMinhasFinancas\trunk\Images\icons8-adicionar-100.png'
+            end>
+        end
+      end
+      inherited recMenuLateralInicio: TRectangle
+        inherited Image3: TImage
+          MultiResBitmap.Height = 100
+          MultiResBitmap.Width = 100
+          MultiResBitmap = <
+            item
+              Width = 100
+              Height = 100
+              PNG = {
+                89504E470D0A1A0A0000000D494844520000006400000064080600000070E295
+                54000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                032549444154785EEDDB3F6FD3501487E1C4CDC0D45491F205BAC2C6CA000333
+                03EA5E161666A88444A918993BB1C0CECA80586060A5121F8044AC9122459920
+                6D0CE79073D290D8C9F59F6B1FDBBF47B2ECEBDA4E73DF5AF2E0B60000000000
+                0020B9300C9FF02243281385783A1C0EC33F84B65FC86E280307E010AB10A524
+                34F127D26003FDECA51C0645D81643214A415C622844F12C490C85289EA489A1
+                10256759622844C9894B0C3AE6949667328C852819B9C690C3F97844F125690C
+                85281EA48DA110254759632844C9415E3114A26490770C852829F88AA1102501
+                DF3114A238282A8642942D8A8EA1102542593114A2AC283B8642146225866A74
+                146B315423A3588DA11A15C57A0CD588285589A16A1DA56A31542DA3543586AA
+                5594AAC750B588529718AAD251EA164355324A5D63A84A45A97B0C5589284D89
+                A14C47695A0C65324A536328535178A2E53363CD66B39F72786DF17794AF1BCB
+                FB1F257DC0CE3B835D5E5E0EE594DAE2EF285F772B6F778A6B0C8620FFCB3D4A
+                92180C4136E51625690C8620D13247A10B3C976B259235085DE26C7125AFCEE4
+                E352491384F19CCA252205B28E7331994C7EC976946FB2866BB173227379B118
+                45DB1A2408828FDD6EF74154148ACDB7DFF962042BCE696E4E647B69341ACD68
+                2E8F784E6557A45D770847F9B41E8563D0FE573284353437AF57A3708C7EBFFF
+                90F67F905DB1760661AB5110C38D46198FC7BF5D6330A7204CA2DC420C771CA5
+                D7EBDD748DC19C8330BAF00FD92CC57C3EFF4EABFB491639A73485CE19DD92C7
+                B46CF0F5D84B93FB590E71C6E7C8E9EB7C3DF61ECB21A924BA43C03F04310641
+                8C41106310C418043106418C41106310C418043106418C41106310C418043106
+                418C41106310C418043106418C41106310C418043106418C69CB3A157907E9ED
+                62748D5F39DDDFDFFF2AC3C4C2303CEC743A87325CA2FD5FF6F6F6EEC9D009BF
+                971504C15D192E5D5D5D0D68FF4086894DA7D33B0707073764B8EA51BBDD7E27
+                DBC5E220FF5E0D2B48CE2FCAF98217E5EA04418C41106310C498AC4F59B76975
+                B4181562404F306F64DB09FD8E8F69B5F1C4E6D17BFA1DF1BF97000000000000
+                00005073ADD65F603A572487EEB1FF0000000049454E44AE426082}
+              FileName = 'D:\AppMinhasFinancas\trunk\Images\icons8-casa-100.png'
+            end>
+        end
+      end
+    end
+    inherited recMenuFooter: TRectangle
+      inherited recHome: TRectangle
+        inherited imageHome: TImage
+          MultiResBitmap.Height = 100
+          MultiResBitmap.Width = 100
+        end
+      end
+      inherited recGrafico: TRectangle
+        inherited imagemGrafico: TImage
+          MultiResBitmap.Height = 100
+          MultiResBitmap.Width = 100
+        end
+      end
+      inherited recCadastros: TRectangle
+        inherited imageCadastro: TImage
+          MultiResBitmap.Height = 100
+          MultiResBitmap.Width = 100
+        end
+      end
+    end
+    inherited Layout1: TLayout
+      inherited imageVoltar: TImage
+        MultiResBitmap.Height = 34
+        MultiResBitmap.Width = 34
+      end
+      inherited lblTitulo: TLabel
+        TextSettings.Font.StyleExt = {00070000000000000004000000}
+      end
+    end
+    inherited VScroll: TScrollBox
+      Viewport.Width = 338.000000000000000000
+      Viewport.Height = 238.000000000000000000
+      object LayoutDataRecebimento: TLayout
+        Align = Top
+        Position.Y = 263.000000000000000000
+        Size.Width = 338.000000000000000000
+        Size.Height = 55.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object lblData: TLabel
+          Align = Top
+          StyledSettings = [Style, FontColor]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.Font.Size = 14.000000000000000000
+          Text = 'Data recebimento'
+          TabOrder = 1
+        end
+        object dataDoc: TDateEdit
+          Date = 45514.000000000000000000
+          TodayDefault = True
+          Align = Client
+          Margins.Left = 20.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Size, Style]
+          TabOrder = 2
+          TextSettings.Font.Family = 'Century'
+          TextSettings.FontColor = xFF9F9F9F
+        end
+      end
+      object LayoutDescricao: TLayout
+        Align = MostTop
+        Position.Y = 208.000000000000000000
+        Size.Width = 338.000000000000000000
+        Size.Height = 55.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object Label4: TLabel
+          Align = Top
+          StyledSettings = [Style, FontColor]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.Font.Size = 14.000000000000000000
+          Text = 'Descri'#231#227'o'
+          TabOrder = 1
+        end
+        object edtDescricao: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          TextSettings.Font.Family = 'Century'
+          Margins.Left = 20.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Texto opcional'
+          StyledSettings = [Size, Style, FontColor]
+          OnEnter = edtDescricaoEnter
+        end
+      end
+      object LayoutTipoDeConta: TLayout
+        Align = MostTop
+        Size.Width = 338.000000000000000000
+        Size.Height = 74.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        object cbTipoConta: TComboBox
+          Align = Bottom
+          Margins.Left = 20.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Position.X = 20.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object Label2: TLabel
+          Align = Bottom
+          StyledSettings = [Style, FontColor]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Position.Y = -4.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.Font.Size = 14.000000000000000000
+          Text = 'Tipo de Conta'
+          TabOrder = 3
+        end
+        object lblCadastrarTipoDeConta: TLabel
+          Align = MostBottom
+          StyledSettings = [Style]
+          HitTest = True
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Position.Y = 51.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.FontColor = xFF0038FF
+          Text = '+ Cadastrar tipo de conta'
+          TabOrder = 2
+          OnClick = lblCadastrarTipoDeContaClick
+        end
+      end
+      object LayoutValor: TLayout
+        Align = MostTop
+        Position.Y = 153.000000000000000000
+        Size.Width = 338.000000000000000000
+        Size.Height = 55.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        object Label3: TLabel
+          Align = Top
+          StyledSettings = [Style, FontColor]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.Font.Size = 14.000000000000000000
+          Text = 'Valor'
+          TabOrder = 1
+        end
+        object numberBoxValor: TNumberBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Client
+          TabOrder = 2
+          Cursor = crIBeam
+          Max = 100000000000.000000000000000000
+          ValueType = Float
+          KeyboardType = NumbersAndPunctuation
+          TextSettings.Font.Family = 'Century'
+          TextSettings.FontColor = xFF9F9F9F
+          HorzIncrement = 0.000000000000000000
+          VertIncrement = 0.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Size.Width = 275.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Size, Style]
+          OnEnter = numberBoxValorEnter
+        end
+        object Label12: TLabel
+          Align = Left
+          StyledSettings = [Style, FontColor]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Position.Y = 23.000000000000000000
+          Size.Width = 18.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.Font.Size = 14.000000000000000000
+          Text = 'R$'
+          TabOrder = 3
+        end
+      end
+      object LayoutFormaPagamento: TLayout
+        Align = MostTop
+        Margins.Top = 5.000000000000000000
+        Position.Y = 79.000000000000000000
+        Size.Width = 338.000000000000000000
+        Size.Height = 74.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 3
+        object cbFormaDePagamento: TComboBox
+          Align = Bottom
+          Margins.Left = 20.000000000000000000
+          Margins.Right = 20.000000000000000000
+          Position.X = 20.000000000000000000
+          Position.Y = 19.000000000000000000
+          Size.Width = 298.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+        end
+        object Label11: TLabel
+          Align = Bottom
+          StyledSettings = [Style, FontColor]
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Position.Y = -4.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.Font.Size = 14.000000000000000000
+          Text = 'Forma de Pagamento'
+          TabOrder = 3
+        end
+        object lblCadastrarFormaPagamento: TLabel
+          Align = MostBottom
+          StyledSettings = [Style]
+          HitTest = True
+          Margins.Left = 15.000000000000000000
+          Position.X = 15.000000000000000000
+          Position.Y = 51.000000000000000000
+          Size.Width = 323.000000000000000000
+          Size.Height = 23.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Family = 'Century'
+          TextSettings.FontColor = xFF0038FF
+          Text = '+ Cadastrar forma de pagamento'
+          TabOrder = 2
+          OnClick = lblCadastrarFormaPagamentoClick
+        end
+      end
+    end
+    inherited LayoutSalvar: TLayout
+      inherited recSalvar: TRectangle
+        OnClick = recSalvarClick
+      end
+    end
+  end
+end

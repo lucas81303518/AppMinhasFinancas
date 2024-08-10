@@ -1,0 +1,28 @@
+unit funcoes;
+
+interface
+
+uses
+  FMX.ListBox, UF_BaseMenu;
+
+type
+  TMenuAcao = (taRelatorio, taHome, taCadastro);
+
+var
+  MenuAtivo: TMenuAcao;
+
+function GetSelectedObject(combobox: TCombobox): TObject;
+procedure Ajustar_Scroll(VScroll: TVerticalScrollBox)
+
+implementation
+
+function GetSelectedObject(combobox: TCombobox): TObject;
+begin
+  if combobox.ItemIndex <> -1 then
+    Result := combobox.Items.Objects[combobox.ItemIndex]
+  else
+    Result := nil;
+end;
+
+
+end.

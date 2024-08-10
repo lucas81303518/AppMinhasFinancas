@@ -1,0 +1,65 @@
+unit Controller.TipoDeContas;
+
+interface
+
+uses
+  Model.TipoDeConta, Generics.Collections, UIDAOTipoDeContas, dao.TipoDeConta;
+
+type
+  TControllerTipoDeContas = class
+  private
+    FIDAOTipoDeContas: IDAOTipoDeContas;
+  public
+    function Add(aTipoConta: TTipoConta): Boolean;
+    function Update(aTipoConta: TTipoConta): Boolean;
+    function GetPorTipo(Tipo: Integer): TObjectList<TTipoConta>;
+    function GetAll: TObjectList<TTipoConta>;
+    function Get(Id: Integer): TTipoConta;
+
+    constructor Create();
+    destructor Destroy; override;
+end;
+
+implementation
+
+{ TControllerTipoDeContas }
+
+function TControllerTipoDeContas.Add(aTipoConta: TTipoConta): Boolean;
+begin
+  inherited;
+  Result := FIDAOTipoDeContas.Add(aTipoConta);
+end;
+
+constructor TControllerTipoDeContas.Create;
+begin
+  FIDAOTipoDeContas := TDAOTipoDeConta.Create;
+end;
+
+destructor TControllerTipoDeContas.Destroy;
+begin
+  TDAOTipoDeConta(FIDAOTipoDeContas).Free;
+  inherited;
+end;
+
+function TControllerTipoDeContas.Get(Id: Integer): TTipoConta;
+begin
+  Result := FIDAOTipoDeContas.Get(Id);
+end;
+
+function TControllerTipoDeContas.GetAll: TObjectList<TTipoConta>;
+begin
+  Result := FIDAOTipoDeContas.GetAll;
+end;
+
+function TControllerTipoDeContas.GetPorTipo(
+  Tipo: Integer): TObjectList<TTipoConta>;
+begin
+  Result := FIDAOTipoDeContas.GetPorTipo(Tipo);
+end;
+
+function TControllerTipoDeContas.Update(aTipoConta: TTipoConta): Boolean;
+begin
+  Result := FIDAOTipoDeContas.Update(aTipoConta);
+end;
+
+end.
