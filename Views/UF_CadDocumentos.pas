@@ -33,10 +33,10 @@ type
     Label12: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lblCadastrarTipoDeContaClick(Sender: TObject);
-    procedure numberBoxValorEnter(Sender: TObject);
     procedure edtDescricaoEnter(Sender: TObject);
     procedure lblCadastrarFormaPagamentoClick(Sender: TObject);
     procedure recSalvarClick(Sender: TObject);
+    procedure numberBoxValorClick(Sender: TObject);
   private
     { Private declarations }
     FControllerTipoContas: TControllerTipoDeContas;
@@ -214,13 +214,10 @@ begin
   end;
 end;
 
-procedure TF_CadDocumentos.numberBoxValorEnter(Sender: TObject);
+procedure TF_CadDocumentos.numberBoxValorClick(Sender: TObject);
 begin
   inherited;
-  {$IFDEF ANDROID}
-//    foco := TNumberBox(Sender);
-//    Ajustar_Scroll();
-  {$ENDIF}
+  numberBoxValor.SelectAll;
 end;
 
 procedure TF_CadDocumentos.recSalvarClick(Sender: TObject);

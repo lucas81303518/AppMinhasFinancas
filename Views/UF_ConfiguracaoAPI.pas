@@ -3,7 +3,7 @@ unit UF_ConfiguracaoAPI;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UF_BaseCadastro, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects,
   FMX.Edit, FMX.EditBox, FMX.NumberBox;
@@ -31,11 +31,7 @@ var
 implementation
 
 uses
-<<<<<<< HEAD
-  Dmodulo, System.Threading, Loading, UF_Login, UnitSplash;
-=======
-  Dmodulo;
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
+  Dmodulo, System.Threading, Loading;
 
 {$R *.fmx}
 
@@ -74,7 +70,6 @@ begin
   DmPrincipal.Configuracoes.IP    := edtIp.Text;
   DmPrincipal.Configuracoes.Porta := StrToInt(numberBoxPorta.Text);
   DmPrincipal.Configuracoes.Salvar;
-<<<<<<< HEAD
   TLoading.Show('Testando conexão com o Servidor...', F_ConfiguracaoAPI);
   DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI(
     procedure(Sucesso: Boolean)
@@ -85,22 +80,8 @@ begin
         Showmessage('Erro com a conexão da API');
         Exit;
       end;
-      if not Assigned(F_Login) then
-          Application.CreateForm(TF_Login, F_Login);
-      Application.MainForm := F_Login;
-      F_Login.Show;
-      FrmSplash.Close;
       Close;
     end);
 end;
-=======
-  if not DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI() then
-  begin
-    Showmessage('Erro com a conexão da API');
-    Exit;
-  end;
-  Close;
-end;
-
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 end.
+

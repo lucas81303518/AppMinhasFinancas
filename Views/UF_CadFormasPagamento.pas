@@ -3,7 +3,7 @@ unit UF_CadFormasPagamento;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UF_BaseCadastro, FMX.Layouts, FMX.Controls.Presentation, FMX.Objects, FMX.Edit,
   Controller.FormasDePagamento, model.FormaDePagamento, Generics.Collections;
@@ -54,12 +54,7 @@ procedure TF_CadFormasPagamento.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   FControllerFormasPagamento.Free;
-<<<<<<< HEAD
-  if Assigned(FFormaPagamento) then
-    FFormaPagamento.Free;
-=======
   FFormaPagamento.Free;
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
   Action := TCloseAction.caFree;
   F_CadFormasPagamento := nil;
 end;
@@ -102,3 +97,4 @@ begin
 end;
 
 end.
+

@@ -40,6 +40,7 @@ type
     procedure Image1Click(Sender: TObject);
     procedure dataInicialClosePicker(Sender: TObject);
     procedure dataFinalClosePicker(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FtipoContaFrame: TTipoContaFrame;
@@ -131,6 +132,12 @@ procedure TF_RelatorioTipoDeContasDetalhado.FormResize(Sender: TObject);
 begin
   inherited;
   CalculaWidthLayoutColuna();
+end;
+
+procedure TF_RelatorioTipoDeContasDetalhado.FormShow(Sender: TObject);
+begin
+  inherited;
+  MenuAtivo := TMenuAtivo.maGrafico;
 end;
 
 procedure TF_RelatorioTipoDeContasDetalhado.Image1Click(Sender: TObject);

@@ -2,12 +2,9 @@ unit Model.Documentos;
 
 interface
 
-<<<<<<< HEAD
 uses
   Model.FormaDePagamento, Model.TipoDeConta, Model.Usuario;
 
-=======
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 type
   TDocumento = class
   private
@@ -15,11 +12,7 @@ type
     FNumeroDocumento: string;
     FDescricao: string;
     FValor: Currency;
-<<<<<<< HEAD
     FDataDocumento: TDate;
-=======
-    FDataDocumento: TDateTime;
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     FQtdParcelas: Integer;
     FStatus: string;
     FCodigoMeta: Integer;
@@ -31,11 +24,7 @@ type
     property NumeroDocumento: string read FNumeroDocumento write FNumeroDocumento;
     property Descricao: string read FDescricao write FDescricao;
     property Valor: Currency read FValor write FValor;
-<<<<<<< HEAD
     property DataDocumento: TDate read FDataDocumento write FDataDocumento;
-=======
-    property DataDocumento: TDateTime read FDataDocumento write FDataDocumento;
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
     property QtdParcelas: Integer read FQtdParcelas write FQtdParcelas;
     property Status: string read FStatus write FStatus;
     property CodigoMeta: Integer read FCodigoMeta write FCodigoMeta;
@@ -44,7 +33,6 @@ type
     property UsuarioId: Integer read FUsuarioId write FUsuarioId;
   end;
 
-<<<<<<< HEAD
   TDocumentoRead = class
     private
     FId: Integer;
@@ -90,8 +78,7 @@ type
       property Descricao: string read FDescricao write FDescricao;
   end;
 
-=======
->>>>>>> 1492d5ef7affba7613d2100756cd6001a19d90f0
 implementation
 
 end.
+

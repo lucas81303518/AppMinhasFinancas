@@ -19,6 +19,7 @@ type
     procedure imageVoltarClick(Sender: TObject);
     procedure FormVirtualKeyboardHidden(Sender: TObject;
       KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   protected
@@ -48,6 +49,12 @@ begin
 
     end;
 
+end;
+
+procedure TF_BaseCadastro.FormShow(Sender: TObject);
+begin
+  inherited;
+  MenuAtivo := TMenuAtivo.maCadastros;
 end;
 
 procedure TF_BaseCadastro.FormVirtualKeyboardHidden(Sender: TObject;
