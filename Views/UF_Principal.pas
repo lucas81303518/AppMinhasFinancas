@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, UF_BaseMenu,
-  funcoes;
+  funcoes, System.Actions, FMX.ActnList, FMX.StdActns, FMX.MediaLibrary.Actions,
+  Controller.Usuario;
 
 type
   TF_Principal = class(TF_BaseMenu)
@@ -36,7 +37,7 @@ var
 implementation
 
 uses
-  Dmodulo;
+  Dmodulo, Loading, UReadUsuario;
 
 {$R *.fmx}
 

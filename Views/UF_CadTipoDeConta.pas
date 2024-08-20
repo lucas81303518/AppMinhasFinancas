@@ -32,6 +32,7 @@ type
     FControllerTipoConta: TControllerTipoDeContas;
     FTipoConta: TTipoConta;
     FEditando: Boolean;
+    procedure ExecutaAposCadastro;
     function ValidarCampos: Boolean; override;
     procedure MontaTela;
   public
@@ -45,6 +46,9 @@ var
   F_CadTipoDeConta: TF_CadTipoDeConta;
 
 implementation
+
+uses
+  Loading;
 
 {$R *.fmx}
 
@@ -70,6 +74,14 @@ begin
   if FTipoConta <> nil then
     MontaTela;
   FEditando := FTipoConta <> nil;
+end;
+
+procedure TF_CadTipoDeConta.ExecutaAposCadastro;
+begin
+  TLoading.Hide;
+  if Assigned(OnContaIncluida) then
+    OnContaIncluida();
+  Close;
 end;
 
 procedure TF_CadTipoDeConta.FormClose(Sender: TObject;
@@ -107,13 +119,13 @@ begin
     FTipoConta.Tipo := 1
   else
     FTipoConta.Tipo := 2;
+
+  TLoading.Show('Inserindo registro...', F_CadTipoDeConta);
+  FControllerTipoConta.OnExecutarAposCadastro := ExecutaAposCadastro;
   if FEditando then
     FControllerTipoConta.Update(FTipoConta)
   else
     FControllerTipoConta.Add(FTipoConta);
-  if Assigned(OnContaIncluida) then
-    OnContaIncluida();
-  Close;
 end;
 
 function TF_CadTipoDeConta.ValidarCampos: Boolean;

@@ -12,6 +12,7 @@ type
     FRePassword: string;
     FDataNascimento: TDateTime;
     FPhoneNumber: string;
+    FFotoBase64: string;
   public
     property NomeCompleto: string read FNomeCompleto write FNomeCompleto;
     property UserName: string read FUserName write FUserName;
@@ -20,6 +21,7 @@ type
     property RePassword: string read FRePassword write FRePassword;
     property DataNascimento: TDateTime read FDataNascimento write FDataNascimento;
     property PhoneNumber: string read FPhoneNumber write FPhoneNumber;
+    property FotoBase64: string read FFotoBase64 write FFotoBase64;
   end;
 
 implementation

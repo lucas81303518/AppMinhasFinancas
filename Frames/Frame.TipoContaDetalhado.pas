@@ -16,6 +16,7 @@ type
     recValor: TRectangle;
     lblValor: TLabel;
     procedure FramePaint(Sender: TObject; Canvas: TCanvas; const ARect: TRectF);
+    procedure FrameResize(Sender: TObject);
   private
     { Private declarations }
     procedure CalculaTamanhoRectangle();
@@ -38,6 +39,11 @@ end;
 
 procedure TFrameTipoContaDetalhado.FramePaint(Sender: TObject; Canvas: TCanvas;
   const ARect: TRectF);
+begin
+//  CalculaTamanhoRectangle();
+end;
+
+procedure TFrameTipoContaDetalhado.FrameResize(Sender: TObject);
 begin
   CalculaTamanhoRectangle();
 end;

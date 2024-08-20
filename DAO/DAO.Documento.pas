@@ -63,7 +63,7 @@ begin
                                                         '&status=' + Status +
                                                         '&dataIni=' + FormatDateTime('yyyy-mm-dd', dataIni) +
                                                         '&dataFim=' + FormatDateTime('yyyy-mm-dd', dataFim)
-  );
+  ) as TJSONArray;
   if (JSONArray <> nil) and (JSONArray.Count > 0) then
   begin
     for var JSONValue: TJSONValue in JSONArray do
@@ -86,7 +86,7 @@ begin
                                                         '&status=' + Status +
                                                         '&dataIni=' + FormatDateTime('yyyy-mm-dd', dataIni) +
                                                         '&dataFim=' + FormatDateTime('yyyy-mm-dd', dataFim)
-  );
+  ) as TJSONArray;
   if (JSONArray <> nil) and (JSONArray.Count > 0) then
   begin
     for var JSONValue: TJSONValue in JSONArray do

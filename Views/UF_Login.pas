@@ -68,6 +68,7 @@ type
     LayoutSalvar: TLayout;
     recSalvar: TRectangle;
     Label12: TLabel;
+    chkLembrarDeMim: TCheckBox;
     procedure recEntrarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -87,6 +88,8 @@ type
     function ValidaCampos(): boolean;
     procedure ExecutarAposCadastro;
     procedure ExecutarAposLogin(retorno: string);
+    procedure ConsultaDadosUsuario;
+    procedure MontaUsuario(DadosUsuario: TObject);
   public
     { Public declarations }
   end;
@@ -98,7 +101,7 @@ implementation
 
 uses
   UF_ConfiguracaoAPI, Dmodulo, ULoginUsuario, UF_Principal,
-  funcoes, Loading;
+  funcoes, Loading, UReadUsuario;
 
 {$R *.fmx}
 
@@ -177,6 +180,7 @@ begin
     Password := edtSenha.Text;
   end;
 
+  TLoading.Show('Autenticando...', F_Login);
   FControllerUsuario.OnExecutarAposLogin := ExecutarAposLogin;
   FControllerUsuario.Login(Dto);
 end;
@@ -188,14 +192,32 @@ begin
   TabControl.ActiveTab := TabLogin;
 end;
 
+procedure TF_Login.MontaUsuario(DadosUsuario: TObject);
+begin
+  try
+    DmPrincipal.Usuario := TReadUsuariosDto(DadosUsuario);
+    if not Assigned(F_Principal) then
+      Application.CreateForm(TF_Principal, F_Principal);
+    Application.MainForm := F_Principal;
+    F_Principal.Show;
+  finally
+    TLoading.Hide;
+    F_Login.Close;
+  end;
+end;
+
+procedure TF_Login.ConsultaDadosUsuario;
+begin
+  TLoading.Show('Carregando informações do usuário...');
+  FControllerUsuario.OnExecutarAposRecuperarUsuario := MontaUsuario;
+  FControllerUsuario.RecuperarUsuario();
+end;
+
 procedure TF_Login.ExecutarAposLogin(retorno: string);
 begin
   HashUser := retorno;
   TLoading.Hide;
-  Application.CreateForm(TF_Principal, F_Principal);
-  Application.MainForm := F_Principal;
-  F_Principal.show;
-  Close;
+  ConsultaDadosUsuario;
 end;
 
 procedure TF_Login.recSalvarClick(Sender: TObject);

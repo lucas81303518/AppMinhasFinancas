@@ -1,0 +1,175 @@
+unit UF_PerfilUsuario;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  UF_BaseMenu, FMX.Controls.Presentation, FMX.Objects, FMX.Layouts, FMX.Edit,
+  FMX.DateTimeCtrls, FMX.MediaLibrary.Actions, System.Actions, FMX.ActnList,
+  FMX.StdActns, Controller.Usuario, System.Permissions, FMX.MediaLibrary,
+  FMX.Media;
+
+type
+  TF_PerfilUsuario = class(TF_BaseMenu)
+    lblNomeUsuario: TLabel;
+    lblInformacoesPessoais: TLabel;
+    LayoutNome: TLayout;
+    Label2: TLabel;
+    recNome: TRectangle;
+    edtNome: TEdit;
+    LayoutEmail: TLayout;
+    Label1: TLabel;
+    Rectangle1: TRectangle;
+    edtEmail: TEdit;
+    LayoutDataContato: TLayout;
+    Label3: TLabel;
+    LayoutDataNascimento: TLayout;
+    Rectangle2: TRectangle;
+    LayoutContato: TLayout;
+    Label4: TLabel;
+    Rectangle3: TRectangle;
+    EditContato: TEdit;
+    DateEditdataNascimento: TDateEdit;
+    LayoutSalvar: TLayout;
+    recSalvar: TRectangle;
+    Label5: TLabel;
+    Layout1: TLayout;
+    imageCancelar: TImage;
+    ImageEditar: TImage;
+    circle_foto: TCircle;
+    procedure FormResize(Sender: TObject);
+    procedure ImageEditarClick(Sender: TObject);
+    procedure imageCancelarClick(Sender: TObject);
+    procedure recSalvarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+    procedure circle_fotoClick(Sender: TObject);
+  private
+    { Private declarations }
+    FControllerUsuario: ControllerUsuario;
+
+    procedure ConsultaDadosUsuario;
+    procedure MontaTela(DadosUsuario: TObject);
+    procedure CalculaMarginRightMenu();
+    procedure SetaEnabledComponentes(Enabled: Boolean);
+  public
+    { Public declarations }
+  end;
+
+var
+  F_PerfilUsuario: TF_PerfilUsuario;
+
+implementation
+
+uses
+  UReadUsuario, funcoes, System.Generics.Collections,
+  {$IFDEF ANDROID}
+    Androidapi.Helpers, Androidapi.JNI.JavaTypes, Androidapi.JNI.Os,
+  {$ENDIF}
+  FMX.DialogService;
+
+{$R *.fmx}
+
+{ TF_PerfilUsuario }
+
+procedure TF_PerfilUsuario.CalculaMarginRightMenu;
+const imageMenuMarginAtual = 310;
+const widthRecMenu         = 360;
+begin
+  imageMenu.Margins.Right := ((imageMenuMarginAtual * recMenu.Width) / widthRecMenu);
+end;
+
+procedure TF_PerfilUsuario.circle_fotoClick(Sender: TObject);
+begin
+  inherited;
+  {$IFDEF ANDROID}
+    PermissionsService.RequestPermissions(
+    [PermissaoCamera, PermissaoWriteStorage, PermissaoReadStorage],
+    TakePicturePermissionRequestResult
+  );
+  {$ENDIF}
+end;
+
+procedure TF_PerfilUsuario.ConsultaDadosUsuario;
+begin
+  FControllerUsuario.OnExecutarAposRecuperarUsuario := MontaTela;
+  FControllerUsuario.RecuperarUsuario();
+end;
+
+procedure TF_PerfilUsuario.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  FControllerUsuario.Free;
+  Action := TCloseAction.caFree;
+  F_PerfilUsuario := nil;
+end;
+
+procedure TF_PerfilUsuario.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FControllerUsuario := ControllerUsuario.Create;
+end;
+
+procedure TF_PerfilUsuario.FormResize(Sender: TObject);
+begin
+  inherited;
+  CalculaMarginRightMenu;
+end;
+
+procedure TF_PerfilUsuario.FormShow(Sender: TObject);
+begin
+  inherited;
+  ConsultaDadosUsuario;
+end;
+
+procedure TF_PerfilUsuario.imageCancelarClick(Sender: TObject);
+begin
+  inherited;
+  if (LayoutNome.Enabled) then
+  begin
+    ConsultaDadosUsuario;
+    SetaEnabledComponentes(False);
+  end;
+end;
+
+procedure TF_PerfilUsuario.ImageEditarClick(Sender: TObject);
+begin
+  inherited;
+  SetaEnabledComponentes(True);
+end;
+
+procedure TF_PerfilUsuario.MontaTela(DadosUsuario: TObject);
+begin
+  with TReadUsuariosDto(DadosUsuario) do
+  begin
+    if FotoBase64 <> '' then
+    begin
+      circle_foto.Fill.Bitmap.Assign(Base64ToBitmap(FotoBase64));
+    end;
+
+    edtNome.Text  := NomeCompleto;
+    edtEmail.Text := Email;
+    DateEditdataNascimento.Date := DataNascimento;
+    EditContato.Text := PhoneNumber;
+  end;
+end;
+
+procedure TF_PerfilUsuario.recSalvarClick(Sender: TObject);
+begin
+  inherited;
+  SetaEnabledComponentes(False);
+end;
+
+procedure TF_PerfilUsuario.SetaEnabledComponentes(Enabled: Boolean);
+begin
+  if (Enabled) and (LayoutNome.Enabled) then
+    Exit;
+
+  LayoutNome.Enabled        := Enabled;
+  LayoutEmail.Enabled       := Enabled;
+  LayoutDataContato.Enabled := Enabled;
+  LayoutSalvar.Enabled      := Enabled;
+end;
+end.

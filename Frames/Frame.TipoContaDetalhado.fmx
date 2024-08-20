@@ -2,10 +2,11 @@ object FrameTipoContaDetalhado: TFrameTipoContaDetalhado
   Align = Client
   Margins.Left = 5.000000000000000000
   Margins.Right = 5.000000000000000000
-  Size.Width = 287.000000000000000000
+  Size.Width = 285.000000000000000000
   Size.Height = 47.000000000000000000
   Size.PlatformDefault = False
   OnPaint = FramePaint
+  OnResize = FrameResize
   object recData: TRectangle
     Align = Left
     Fill.Color = claWhite

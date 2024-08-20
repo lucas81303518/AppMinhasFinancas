@@ -55,7 +55,7 @@ begin
   end;
 
   try
-    JSONArray := DmPrincipal.Configuracoes.ConfigREST.Get('FormasPagamento');
+    JSONArray := DmPrincipal.Configuracoes.ConfigREST.Get('FormasPagamento') as TJSONArray;
   except on Ex: Exception do
     begin
       Ex.Message := 'Erro 2: ' + ex.Message;

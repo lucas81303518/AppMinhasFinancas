@@ -1,0 +1,188 @@
+object F_Camera: TF_Camera
+  Left = 0
+  Top = 0
+  Caption = 'BaseMainForm'
+  ClientHeight = 793
+  ClientWidth = 683
+  Fill.Color = claNull
+  Fill.Kind = Solid
+  FormFactor.Width = 1280
+  FormFactor.Height = 1024
+  FormFactor.Orientations = [Landscape]
+  FormFactor.Devices = [Desktop]
+  ShowHint = False
+  OnCreate = FormCreate
+  OnClose = FormClose
+  DesignerMasterStyle = 3
+  object ImageContainer: TImage
+    MultiResBitmap = <
+      item
+      end
+      item
+        Scale = 2.000000000000000000
+      end>
+    Align = Center
+    EnableDragHighlight = False
+    Size.Width = 600.000000000000000000
+    Size.Height = 659.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object ToolBarBottom: TToolBar
+    Align = Bottom
+    Position.Y = 745.000000000000000000
+    Size.Width = 683.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object ButtonTakePhotoFromCamera: TButton
+      Align = Center
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'cameratoolbutton'
+      TabOrder = 0
+      Text = ' '
+      OnClick = ButtonTakePhotoFromCameraClick
+    end
+    object ButtonRemovePhoto: TButton
+      Action = ActionClearImage
+      Align = Right
+      Enabled = True
+      ImageIndex = -1
+      Position.X = 635.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'trashtoolbutton'
+      TabOrder = 1
+      object RemoveBtnAnimation: TFloatAnimation
+        Duration = 1.000000000000000000
+        Interpolation = Bounce
+        PropertyName = 'RotationAngle'
+        StartValue = 0.000000000000000000
+        StopValue = 360.000000000000000000
+      end
+    end
+    object ButtonSendImage: TButton
+      Align = Left
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'donetoolbutton'
+      TabOrder = 2
+      Text = ' '
+      OnClick = ButtonSendImageClick
+    end
+  end
+  object ToolBarTop: TToolBar
+    Padding.Left = 7.000000000000000000
+    Size.Width = 683.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object ButtonTakePhotoFromLibrary: TButton
+      Align = Right
+      Position.X = 635.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'organizetoolbutton'
+      TabOrder = 0
+      Text = ' '
+      OnClick = ButtonTakePhotoFromLibraryClick
+    end
+    object FilterComboBox: TComboBox
+      Align = Client
+      Margins.Right = 100.000000000000000000
+      Size.Width = 528.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      OnChange = FilterComboBoxChange
+    end
+  end
+  object LayoutFilterSettings: TLayout
+    Position.X = 16.000000000000000000
+    Position.Y = 56.000000000000000000
+    Size.Width = 289.000000000000000000
+    Size.Height = 345.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+  end
+  object TopHelp: TLayout
+    Align = Scale
+    Position.Y = 48.000000000000000000
+    Size.Width = 683.000000000000000000
+    Size.Height = 697.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+  end
+  object ActionList: TActionList
+    OnUpdate = ActionListUpdate
+    Left = 280
+    Top = 48
+    object ActionTakePhotoFromLibrary: TTakePhotoFromLibraryAction
+      Category = 'Media Library'
+      CustomText = ' '
+      MaxHeight = 500
+      MaxWidth = 500
+      OnDidFinishTaking = ActionTakePhotoFromLibraryDidFinishTaking
+    end
+    object ActionTakePhotoFromCamera: TTakePhotoFromCameraAction
+      Category = 'Media Library'
+      CustomText = ' '
+      MaxHeight = 500
+      MaxWidth = 500
+      OnDidFinishTaking = ActionTakePhotoFromLibraryDidFinishTaking
+    end
+    object ActionShowShareSheet: TShowShareSheetAction
+      Category = 'Media Library'
+      CustomText = ' '
+      TextMessage = 'Sent from an application created with #Delphi  #Embarcadero'
+      OnBeforeExecute = ActionShowShareSheetBeforeExecute
+    end
+    object ActionBlurEffect: TAction
+      Category = 'Filters'
+      Text = 'Blur'
+      GroupIndex = 1
+      OnExecute = ActionBlurEffectExecute
+    end
+    object ActionPixelateEffect: TAction
+      Category = 'Filters'
+      Text = 'Pixelate'
+      GroupIndex = 1
+      OnExecute = ActionPixelateEffectExecute
+    end
+    object ActionSharpenEffect: TAction
+      Category = 'Filters'
+      Text = 'Sharpen'
+      GroupIndex = 1
+      OnExecute = ActionSharpenEffectExecute
+    end
+    object ActionResetEffect: TAction
+      Category = 'Filters'
+      Text = 'None'
+      GroupIndex = 1
+      OnExecute = ActionResetEffectExecute
+    end
+    object ActionClearImage: TAction
+      Category = 'Media Library'
+      OnExecute = ActionClearImageExecute
+    end
+    object ActionWaveEffect: TAction
+      Category = 'Filters'
+      Text = 'Wave'
+      OnExecute = ActionWaveEffectExecute
+    end
+    object ActionContrastEffect: TAction
+      Category = 'Filters'
+      Text = 'Contrast'
+      OnExecute = ActionContrastEffectExecute
+    end
+    object ActionPaperSketchEffect: TAction
+      Category = 'Filters'
+      Text = 'Paper Sketch'
+      OnExecute = ActionPaperSketchEffectExecute
+    end
+  end
+end

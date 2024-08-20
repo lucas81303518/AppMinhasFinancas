@@ -187,6 +187,16 @@ object F_Login: TF_Login
                       end
                     end
                   end
+                  object chkLembrarDeMim: TCheckBox
+                    StyledSettings = [Family, Style, FontColor]
+                    Position.X = 8.000000000000000000
+                    Position.Y = 166.000000000000000000
+                    Size.Width = 154.000000000000000000
+                    Size.Height = 19.000000000000000000
+                    Size.PlatformDefault = False
+                    TabOrder = 2
+                    Text = 'Lembrar de mim'
+                  end
                 end
                 object recEntrar: TRectangle
                   Align = Bottom
@@ -678,7 +688,7 @@ object F_Login: TF_Login
                 TabOrder = 1
               end
               object dataNasc: TDateEdit
-                Date = 45514.000000000000000000
+                Date = 45523.000000000000000000
                 TodayDefault = True
                 Align = Client
                 Margins.Left = 20.000000000000000000

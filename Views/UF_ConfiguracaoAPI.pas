@@ -31,7 +31,7 @@ var
 implementation
 
 uses
-  Dmodulo, System.Threading, Loading;
+  Dmodulo, System.Threading, Loading, UF_Login;
 
 {$R *.fmx}
 
@@ -69,7 +69,6 @@ begin
 
   DmPrincipal.Configuracoes.IP    := edtIp.Text;
   DmPrincipal.Configuracoes.Porta := StrToInt(numberBoxPorta.Text);
-  DmPrincipal.Configuracoes.Salvar;
   TLoading.Show('Testando conexão com o Servidor...', F_ConfiguracaoAPI);
   DmPrincipal.Configuracoes.ConfigREST.ValidaConexaoAPI(
     procedure(Sucesso: Boolean)
@@ -80,6 +79,10 @@ begin
         Showmessage('Erro com a conexão da API');
         Exit;
       end;
+       if not Assigned(F_Login) then
+          Application.CreateForm(TF_Login, F_Login);
+      Application.MainForm := F_Login;
+      F_Login.Show;
       Close;
     end);
 end;

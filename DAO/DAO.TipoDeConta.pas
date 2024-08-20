@@ -46,7 +46,7 @@ var
   JSONValue: TJSONValue;
 begin
   Result := TObjectList<TTipoConta>.create;
-  JSONArray := DmPrincipal.Configuracoes.ConfigREST.Get('TipoContas');
+  JSONArray := DmPrincipal.Configuracoes.ConfigREST.Get('TipoContas') as TJSONArray;
   if (JSONArray <> nil) and (JSONArray.Count > 0) then
   begin
     for JSONValue in JSONArray do
@@ -60,7 +60,8 @@ var
   JSONValue: TJSONValue;
 begin
   Result := TObjectList<TTipoConta>.create;
-  JSONArray := DmPrincipal.Configuracoes.ConfigREST.Get('TipoContas/Tipo/' + tipo.ToString);
+  JSONArray := DmPrincipal.Configuracoes.ConfigREST.Get('TipoContas/Tipo/' + tipo.ToString)
+               as TJSONArray;
   try
     if (JSONArray <> nil) and (JSONArray.Count > 0) then
     begin

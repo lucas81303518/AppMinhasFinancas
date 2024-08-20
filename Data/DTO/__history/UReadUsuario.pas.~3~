@@ -1,0 +1,63 @@
+unit UReadUsuario;
+
+interface
+
+uses
+  FMX.Graphics;
+
+type
+  TReadUsuariosDto = class
+  private
+    FNomeCompleto: string;
+    FUserName: string;
+    FEmail: string;
+    FDataNascimento: TDateTime;
+    FPhoneNumber: string;
+    FFotoBase64: string;
+    function Base64ToBitmap(const Base64Str: string): TBitmap;
+  public
+    constructor Create;
+
+    property NomeCompleto: string read FNomeCompleto write FNomeCompleto;
+    property UserName: string read FUserName write FUserName;
+    property Email: string read FEmail write FEmail;
+    property DataNascimento: TDateTime read FDataNascimento write FDataNascimento;
+    property PhoneNumber: string read FPhoneNumber write FPhoneNumber;
+    property FotoBase64: string read FFotoBase64 write FFotoBase64;
+  end;
+
+implementation
+
+uses
+  System.Classes, System.SysUtils, System.NetEncoding;
+
+constructor TReadUsuariosDto.Create;
+begin
+  inherited;
+  FFotoBase64 := '';
+end;
+
+function TReadUsuariosDto.Base64ToBitmap(const Base64Str: string): TBitmap;
+var
+  Base64Stream: TStringStream;
+  Bitmap: TBitmap;
+begin
+  Base64Stream := TStringStream.Create(Base64Str, TEncoding.ASCII);
+  try
+    Base64Stream.Position := 0;
+    Bitmap := TBitmap.Create;
+    try
+      TNetEncoding.Base64.Decode(Base64Stream, Base64Stream);
+      Base64Stream.Position := 0;
+      Bitmap.LoadFromStream(Base64Stream);
+    except
+      Bitmap.Free;
+      raise;
+    end;
+    Result := Bitmap;
+  finally
+    Base64Stream.Free;
+  end;
+end;
+
+end.

@@ -106,7 +106,7 @@ begin
   //BackGround
   Background                               := TRectangle.Create(AForm);
   Background.Opacity                       := 0.6;
-  Background.Fill.Color                    := $FF049A04;
+  Background.Fill.Color                    := TAlphaColorRec.black;//$FFCCCCCC;
   Background.Parent                        := AForm;
   Background.Visible                       := true;
   Background.Align                         := TAlignLayout.Contents;
@@ -133,7 +133,7 @@ begin
   ArcLoad.Width                            := 25;
   ArcLoad.Height                           := 25;
   ArcLoad.EndAngle                         := 280;
-  ArcLoad.Stroke.Color                     := TAlphaColorRec.Black;;
+  ArcLoad.Stroke.Color                     := TAlphaColorRec.White;;
   ArcLoad.Stroke.Thickness                 := 2;
   ArcLoad.Position.X                       := Trunc((Layout.Width - ArcLoad.Width) / 2);
   ArcLoad.Position.Y                       := 0;
@@ -158,7 +158,7 @@ begin
   ArcLoadMaior.Width                       := 60;
   ArcLoadMaior.Height                      := 60;
   ArcLoadMaior.EndAngle                    := 280;
-  ArcLoadMaior.Stroke.Color                := TAlphaColorRec.Black;;
+  ArcLoadMaior.Stroke.Color                := TAlphaColorRec.White;;
   ArcLoadMaior.Stroke.Thickness            := 4;
   ArcLoadMaior.Position.X                  := Trunc((Layout.Width - ArcLoad.Width) / 2);
   ArcLoadMaior.Position.Y                  := 0;
@@ -183,7 +183,7 @@ begin
   MessageLoad.Font.Size                    := 13;
   MessageLoad.Height                       := 70;
   MessageLoad.Width                        := Application.MainForm.Width - 100;
-  MessageLoad.FontColor                    := TAlphaColorRec.Black;;
+  MessageLoad.FontColor                    := TAlphaColorRec.White;;
   MessageLoad.TextSettings.HorzAlign       := TTextAlign.Center;
   MessageLoad.TextSettings.VertAlign       := TTextAlign.Leading;
   MessageLoad.StyledSettings               := [TStyledSetting.Family, TStyledSetting.Style];

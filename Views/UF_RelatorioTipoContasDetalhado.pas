@@ -17,7 +17,6 @@ type
     lblTipoConta: TLabel;
     Circulo: TCircle;
     Layout2: TLayout;
-    imageVoltar: TImage;
     lblTitulo: TLabel;
     LayoutTipoContaGeral: TLayout;
     lblValorTotal: TLabel;
@@ -34,19 +33,20 @@ type
     LayoutTituloTipoConta: TLayout;
     LayoutDescricao: TLayout;
     LayoutValor: TLayout;
-    Image1: TImage;
+    ImageClose: TImage;
+    Layout3: TLayout;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormResize(Sender: TObject);
-    procedure Image1Click(Sender: TObject);
+    procedure ImageCloseClick(Sender: TObject);
     procedure dataInicialClosePicker(Sender: TObject);
     procedure dataFinalClosePicker(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FtipoContaFrame: TTipoContaFrame;
-    FListaDocsTipoContaDetalhado: TObjectList<TReadTipoContaTotalDocs>;
     FControllerDocumento: TControllerDocumento;
-    procedure MontaTela;
+    procedure ConsultaDados;
+    procedure MontaTela(Dados: TObjectList<TReadTipoContaTotalDocs>);
     procedure AddItemRelatorio(Documento: TReadTipoContaTotalDocs);
     procedure CalculaWidthLayoutColuna;
   public
@@ -61,6 +61,9 @@ var
 
 implementation
 
+uses
+  Loading;
+
 {$R *.fmx}
 
 { TF_RelatorioTipoDeContasDetalhado }
@@ -71,9 +74,8 @@ var
   ItemLb: TListBoxItem;
 begin
   Itemlb := TListBoxItem.Create(lbRelatorio);
-  Itemlb.Margins.Bottom := 5;
   Itemlb.Margins.Left   := 5;
-  Itemlb.Height := 47;
+  Itemlb.Height := 38;
 
   Frame := TFrameTipoContaDetalhado.Create(ItemLb);
   Frame.lblData.Text      := FormatDateTime('dd/mm/yyyy', Documento.DataDocumento);
@@ -92,6 +94,16 @@ begin
   LayoutValor.Width     := Trunc(LayoutTipoContaGeral.Width * 0.25);
 end;
 
+procedure TF_RelatorioTipoDeContasDetalhado.ConsultaDados;
+begin
+  TLoading.Show('Carregando Dados...', F_RelatorioTipoDeContasDetalhado);
+  FControllerDocumento.OnExecutarAposConsulta := MontaTela;
+  FControllerDocumento
+    .RelatorioDetalhadoTipoContas(FtipoContaFrame.IdTipoConta,
+                                  'P', dataInicial.Date, dataFinal.Date
+                                  );
+end;
+
 constructor TF_RelatorioTipoDeContasDetalhado.Create(AOwner: TComponent;
   TipoContaFrame: TTipoContaFrame; DtInicial, DtFinal: TDateTime);
 begin
@@ -100,22 +112,20 @@ begin
   dataFinal.Date   := dtFinal;
   FtipoContaFrame  := tipoContaFrame;
   FControllerDocumento := TControllerDocumento.Create;
-  FListaDocsTipoContaDetalhado := TObjectList<TReadTipoContaTotalDocs>.Create;
-  MontaTela;
 end;
 
 procedure TF_RelatorioTipoDeContasDetalhado.dataFinalClosePicker(
   Sender: TObject);
 begin
   inherited;
-  MontaTela;
+  ConsultaDados;
 end;
 
 procedure TF_RelatorioTipoDeContasDetalhado.dataInicialClosePicker(
   Sender: TObject);
 begin
   inherited;
-  MontaTela;
+  ConsultaDados;
 end;
 
 procedure TF_RelatorioTipoDeContasDetalhado.FormClose(Sender: TObject;
@@ -123,7 +133,6 @@ procedure TF_RelatorioTipoDeContasDetalhado.FormClose(Sender: TObject;
 begin
   inherited;
   FControllerDocumento.Free;
-  FListaDocsTipoContaDetalhado.Free;
   Action := TCloseAction.cafree;
   F_RelatorioTipoDeContasDetalhado := nil;
 end;
@@ -137,40 +146,40 @@ end;
 procedure TF_RelatorioTipoDeContasDetalhado.FormShow(Sender: TObject);
 begin
   inherited;
+  LayoutTituloTipoConta.Visible := False;
   MenuAtivo := TMenuAtivo.maGrafico;
+  ConsultaDados;
 end;
 
-procedure TF_RelatorioTipoDeContasDetalhado.Image1Click(Sender: TObject);
+procedure TF_RelatorioTipoDeContasDetalhado.ImageCloseClick(Sender: TObject);
 begin
   inherited;
   Close;
 end;
 
-procedure TF_RelatorioTipoDeContasDetalhado.MontaTela;
+procedure TF_RelatorioTipoDeContasDetalhado.MontaTela(Dados: TObjectList<TReadTipoContaTotalDocs>);
 var
   Total: Currency;
 begin
   try
     Total := 0;
-    lblTipoConta.Text  := FtipoContaFrame.TituloConta;
+    lblTipoConta.Text       := FtipoContaFrame.TituloConta;
     lblTipoConta.FontColor  := FtipoContaFrame.Cor;
     lblValorTotal.FontColor := FtipoContaFrame.Cor;
     Circulo.Fill.Color      := FtipoContaFrame.Cor;
 
-    FListaDocsTipoContaDetalhado := FControllerDocumento
-                                    .RelatorioDetalhadoTipoContas(FtipoContaFrame.IdTipoConta,
-                                    'P', dataInicial.Date, dataFinal.Date
-                                    );
     lbRelatorio.BeginUpdate;
     lbRelatorio.Clear;
-    for var Doc: TReadTipoContaTotalDocs in FListaDocsTipoContaDetalhado do
+    for var Doc: TReadTipoContaTotalDocs in Dados do
     begin
       Total := Total + Doc.ValorTotal;
       AddItemRelatorio(Doc);
     end;
     lblValorTotal.Text := 'R$ ' + FormatFloat('#,##.00', FtipoContaFrame.ValorTotal);
   finally
+    LayoutTituloTipoConta.Visible := True;
     lbRelatorio.EndUpdate;
+    TLoading.Hide;
   end;
 end;
 

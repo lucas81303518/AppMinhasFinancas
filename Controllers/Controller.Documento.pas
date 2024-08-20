@@ -7,24 +7,62 @@ uses
   dao.Documento;
 
 type
+  TExecutarAposCadastro = procedure of object;
+  TExecutarAposConsultaRelatorioDetalhadoTipoContas =
+                          procedure (Retorno: TObjectList<TReadTipoContaTotalDocs>) of object;
+
+
   TControllerDocumento = class
   private
+    FExecutarAposCadastro: TExecutarAposCadastro;
+    FExecutarAposConsultaRelatorioDetalhadoTipoContas: TExecutarAposConsultaRelatorioDetalhadoTipoContas;
+
     FIDAODocumento: IDAODocumento;
   public
     constructor Create();
     function Add(Documento: TDocumento): Boolean;
     function Update(Documento: TDocumento): Boolean;
-    function ObterValoresPorPeriodo(Tipo: Integer; Status: string; DataIni, DataFim: TDateTime): TObjectList<TReadTipoContaTotalDocs>;
-    function RelatorioDetalhadoTipoContas(Id: Integer; Status: string; DataIni, DataFim: TDateTime): TObjectList<TReadTipoContaTotalDocs>;
+    procedure ObterValoresPorPeriodo(Tipo: Integer; Status: string; DataIni, DataFim: TDateTime);
+    procedure RelatorioDetalhadoTipoContas(Id: Integer; Status: string; DataIni, DataFim: TDateTime);
+
+    property OnExecutarAposConsulta: TExecutarAposConsultaRelatorioDetalhadoTipoContas read FExecutarAposConsultaRelatorioDetalhadoTipoContas write FExecutarAposConsultaRelatorioDetalhadoTipoContas;
+    property OnExecutarAposCadastro: TExecutarAposCadastro read FExecutarAposCadastro write FExecutarAposCadastro;
 end;
 
 implementation
+
+uses
+  ThreadingEx, FMX.Dialogs, Loading, System.Classes, System.Threading,
+  System.SysUtils;
 
 { TControllerDocumento }
 
 function TControllerDocumento.Add(Documento: TDocumento): Boolean;
 begin
-  Result := FIDAODocumento.Add(Documento);
+  TTaskEx.Run(
+    procedure
+    begin
+      FIDAODocumento.Add(Documento);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposCadastro) then
+                OnExecutarAposCadastro();
+            end;
+          end);
+        end
+    , NotOnCanceled);
 end;
 
 constructor TControllerDocumento.Create;
@@ -33,18 +71,67 @@ begin
   FIDAODocumento := TDAODocumento.Create;
 end;
 
-function TControllerDocumento.ObterValoresPorPeriodo(Tipo: Integer;
+procedure TControllerDocumento.ObterValoresPorPeriodo(Tipo: Integer;
   Status: string; DataIni,
-  DataFim: TDateTime): TObjectList<TReadTipoContaTotalDocs>;
+  DataFim: TDateTime);
+var
+  Retorno: TObjectList<TReadTipoContaTotalDocs>;
 begin
-  Result := FIDAODocumento.ObterValoresPorPeriodo(Tipo, Status, DataIni, DataFim);
+  TTaskEx.Run(
+    procedure
+    begin
+      Retorno := FIDAODocumento.ObterValoresPorPeriodo(Tipo, Status, DataIni, DataFim);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposConsulta) then
+                OnExecutarAposConsulta(Retorno);
+            end;
+          end);
+        end
+    , NotOnCanceled);
 end;
 
-function TControllerDocumento.RelatorioDetalhadoTipoContas(Id: Integer;
-  Status: string; DataIni,
-  DataFim: TDateTime): TObjectList<TReadTipoContaTotalDocs>;
+procedure TControllerDocumento.RelatorioDetalhadoTipoContas(Id: Integer; Status: string;
+ DataIni, DataFim: TDateTime);
+var
+  Retorno: TObjectList<TReadTipoContaTotalDocs>;
 begin
-  Result := FIDAODocumento.RelatorioDetalhadoTipoContas(Id, Status, DataIni, DataFim);
+  TTaskEx.Run(
+    procedure
+    begin
+      Retorno := FIDAODocumento.RelatorioDetalhadoTipoContas(Id, Status, DataIni, DataFim);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposConsulta) then
+                OnExecutarAposConsulta(Retorno);
+            end;
+          end);
+        end
+    , NotOnCanceled);
 end;
 
 function TControllerDocumento.Update(Documento: TDocumento): Boolean;

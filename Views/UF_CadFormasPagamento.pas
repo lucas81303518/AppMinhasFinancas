@@ -26,6 +26,7 @@ type
     FFormaPagamentoIncluida: TFormaPagamentoIncluida;
     procedure MontaTela;
     function ValidarCampos: Boolean; override;
+    procedure ExecutaAposCadastro;
   public
     { Public declarations }
     property OnFormaPagamentoIncluida: TFormaPagamentoIncluida read FFormaPagamentoIncluida write FFormaPagamentoIncluida;
@@ -36,6 +37,9 @@ var
   F_CadFormasPagamento: TF_CadFormasPagamento;
 
 implementation
+
+uses
+  Loading;
 
 {$R *.fmx}
 
@@ -48,6 +52,14 @@ begin
   if FFormaPagamento <> nil then
     MontaTela;
   FEditando := FFormaPagamento <> nil;
+end;
+
+procedure TF_CadFormasPagamento.ExecutaAposCadastro;
+begin
+  TLoading.Hide;
+  if Assigned(OnFormaPagamentoIncluida) then
+    OnFormaPagamentoIncluida();
+  Close;
 end;
 
 procedure TF_CadFormasPagamento.FormClose(Sender: TObject;
@@ -74,14 +86,12 @@ begin
   FFormaPagamento.Nome := edtDescricao.Text;
   FFormaPagamento.Valor := 0;
 
+  TLoading.Show('Inserindo registro...', F_CadFormasPagamento);
+  FControllerFormasPagamento.OnExecutarAposCadastro := ExecutaAposCadastro;
   if FEditando then
     FControllerFormasPagamento.Update(FFormaPagamento)
   else
     FControllerFormasPagamento.Add(FFormaPagamento);
-
-  if Assigned(OnFormaPagamentoIncluida) then
-    OnFormaPagamentoIncluida();
-  Close;
 end;
 
 function TF_CadFormasPagamento.ValidarCampos: Boolean;
