@@ -1,0 +1,103 @@
+unit UF_Principal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, UF_BaseMenu,
+  funcoes, System.Actions, FMX.ActnList, FMX.StdActns, FMX.MediaLibrary.Actions,
+  Controller.Usuario, Controller.Saldo, Controller.Gastos;
+
+type
+  TF_Principal = class(TF_BaseMenu)
+    RecSaldoAtual: TRectangle;
+    Label1: TLabel;
+    Rectangle1: TRectangle;
+    imageOlhoSaldoAtual: TImage;
+    lblSaldoAtual: TLabel;
+    RecGastoMes: TRectangle;
+    Label2: TLabel;
+    Rectangle3: TRectangle;
+    ImageOlhoGastoMes: TImage;
+    lblGastoMes: TLabel;
+    recMetas: TRectangle;
+    Label3: TLabel;
+    lbMetas: TListBox;
+    Rectangle2: TRectangle;
+    Label4: TLabel;
+    Rectangle4: TRectangle;
+    Image1: TImage;
+    lblReceitasMes: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+    FControllerSaldo: TControllerSaldo;
+    FControlelrGasto: TControllerGastos;
+    procedure OnExecutarAposConsultaSaldoTotal(Retorno: Currency);
+    procedure OnExecutarAposConsultaGastoMensal(Retorno: Currency);
+  public
+    { Public declarations }
+  end;
+
+var
+  F_Principal: TF_Principal;
+
+implementation
+
+uses
+  Dmodulo, Loading, UReadUsuario, System.DateUtils;
+
+{$R *.fmx}
+
+{ TF_Principal }
+
+procedure TF_Principal.FormActivate(Sender: TObject);
+begin
+  inherited;
+  TLoading.Show('Atualizando saldo...', F_Principal);
+  FControllerSaldo.OnExecutarAposConsultaSaldoTotal  := OnExecutarAposConsultaSaldoTotal;
+  FControllerSaldo.GetSaldoTotal;
+
+  TLoading.Show('Atualizando gasto Mensal...', F_Principal);
+  FControlelrGasto.OnExecutarAposConsultaSaldoTotal := OnExecutarAposConsultaGastoMensal;
+  FControlelrGasto.RecuperarGastoMensal(MonthOf(Now), YearOf(Now));
+end;
+
+procedure TF_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FControllerSaldo.Free;
+  FControlelrGasto.Free;
+  inherited;
+end;
+
+procedure TF_Principal.FormCreate(Sender: TObject);
+begin
+  FControllerSaldo := TControllerSaldo.Create;
+  FControlelrGasto := TControllerGastos.Create;
+  MenuAtivo := TMenuAtivo.maPrincipal;
+  inherited;
+end;
+
+procedure TF_Principal.OnExecutarAposConsultaGastoMensal(Retorno: Currency);
+begin
+  try
+    lblGastoMes.Text := 'R$ ' + FormatFloat('#,##0.00', Retorno);
+  finally
+    TLoading.Hide;
+  end;
+end;
+
+procedure TF_Principal.OnExecutarAposConsultaSaldoTotal(Retorno: Currency);
+begin
+  try
+    lblSaldoAtual.Text := 'R$ ' + FormatFloat('#,##0.00', Retorno);
+  finally
+    TLoading.Hide;
+  end;
+end;
+
+end.
+

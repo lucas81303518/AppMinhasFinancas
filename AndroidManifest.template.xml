@@ -17,8 +17,8 @@
         android:label="%label%"
         android:debuggable="%debuggable%"
         android:largeHeap="%largeHeap%"
-        android:icon="%icon%"
-        android:theme="%theme%"
+		android:theme="%theme%"
+        android:icon="%icon%"      
         android:hardwareAccelerated="%hardwareAccelerated%"
         android:resizeableActivity="false"
         android:requestLegacyExternalStorage="true">

@@ -1,0 +1,103 @@
+unit Controller.SaldoMensal;
+
+interface
+
+uses
+  DAO.SaldoMensal;
+
+type
+  TExecutarAposConsulta = procedure(Retorno: Currency) of object;
+
+  TControllerSaldoMensal = class
+  private
+    FDaoSaldoMensal: TDAOSaldoMensal;
+    FExecutarAposConsulta: TExecutarAposConsulta;
+  public
+    procedure GetSaldoTotal();
+    procedure GetSaldoMes(mes, ano: Integer);
+    constructor Create;
+    destructor Destroy;
+
+    property OnExecutarAposConsulta: TExecutarAposConsulta read FExeCutarAposConsulta write FExeCutarAposConsulta;
+end;
+
+implementation
+
+uses
+  ThreadingEx, System.Classes, Loading, FMX.Dialogs, System.Threading;
+
+{ TControllerSaldoMensal }
+
+constructor TControllerSaldoMensal.Create;
+begin
+  inherited;
+  FDaoSaldoMensal := TDaoSaldoMensal.Create;
+end;
+
+destructor TControllerSaldoMensal.Destroy;
+begin
+  FDaoSaldoMensal.Destroy;
+  inherited;
+end;
+
+procedure TControllerSaldoMensal.GetSaldoMes(mes, ano: Integer);
+var
+  Retorno: Currency;
+begin
+  TTaskEx.Run(
+    procedure
+    begin
+      Retorno := FDaoSaldoMensal.GetSaldoMes(mes, ano);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposConsulta) then
+                OnExecutarAposConsulta(Retorno);
+            end;
+          end);
+        end
+    , NotOnCanceled);
+end;
+
+procedure TControllerSaldoMensal.GetSaldoTotal;
+var
+  Retorno: Currency;
+begin
+  TTaskEx.Run(
+    procedure
+    begin
+      Retorno := FDaoSaldoMensal.GetSaldoTotal();
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposConsulta) then
+                OnExecutarAposConsulta(Retorno);
+            end;
+          end);
+        end
+    , NotOnCanceled);
+end;
+
+end.

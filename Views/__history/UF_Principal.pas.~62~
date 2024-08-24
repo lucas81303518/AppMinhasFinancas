@@ -1,0 +1,152 @@
+unit UF_Principal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, UF_BaseMenu,
+  funcoes, System.Actions, FMX.ActnList, FMX.StdActns, FMX.MediaLibrary.Actions,
+  Controller.Usuario, Controller.Saldo, Controller.Gastos, System.ImageList,
+  FMX.ImgList, Controller.Receitas;
+
+type
+  TEnumListaImagens = (liOlhoFechado, liOlhoAberto);
+
+  TF_Principal = class(TF_BaseMenu)
+    RecSaldoAtual: TRectangle;
+    Label1: TLabel;
+    Rectangle1: TRectangle;
+    imageOlhoSaldoAtual: TImage;
+    lblSaldoAtual: TLabel;
+    RecGastoMes: TRectangle;
+    Label2: TLabel;
+    Rectangle3: TRectangle;
+    ImageOlhoGastoMes: TImage;
+    lblGastoMes: TLabel;
+    recMetas: TRectangle;
+    Label3: TLabel;
+    lbMetas: TListBox;
+    Rectangle2: TRectangle;
+    Label4: TLabel;
+    Rectangle4: TRectangle;
+    ImageOlhoReceitasMes: TImage;
+    lblReceitasMes: TLabel;
+    ImageList: TImageList;
+    procedure FormCreate(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+    FControllerSaldo: TControllerSaldo;
+    FControlelrGasto: TControllerGastos;
+    FControllerReceitas: TControllerReceitas;
+    procedure SetarImagem(enumImagem: TEnumListaImagens; objImagem: TImage);
+    procedure OnExecutarAposConsultaSaldoTotal(Retorno: Currency);
+    procedure OnExecutarAposConsultaGastoMensal(Retorno: Currency);
+    procedure OnExecutarAposConsultaReceitaMensal(Retorno: Currency);
+  public
+    { Public declarations }
+  end;
+
+var
+  F_Principal: TF_Principal;
+
+implementation
+
+uses
+  Dmodulo, Loading, UReadUsuario, System.DateUtils;
+
+{$R *.fmx}
+
+{ TF_Principal }
+
+procedure TF_Principal.FormActivate(Sender: TObject);
+begin
+  inherited;
+  TLoading.Show('Atualizando saldo...', F_Principal);
+  FControllerSaldo.OnExecutarAposConsultaSaldoTotal  := OnExecutarAposConsultaSaldoTotal;
+  FControllerSaldo.GetSaldoTotal;
+
+  TLoading.Show('Atualizando gasto Mensal...', F_Principal);
+  FControlelrGasto.OnExecutarAposConsultaGastoMensal := OnExecutarAposConsultaGastoMensal;
+  FControlelrGasto.RecuperarGastoMensal(MonthOf(Now), YearOf(Now));
+end;
+
+procedure TF_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  FControllerSaldo.Free;
+  FControlelrGasto.Free;
+  FControllerReceitas.Free;
+  inherited;
+end;
+
+procedure TF_Principal.FormCreate(Sender: TObject);
+begin
+  FControllerSaldo := TControllerSaldo.Create;
+  FControlelrGasto := TControllerGastos.Create;
+  FControllerReceitas := TControllerReceitas.Create;
+  MenuAtivo := TMenuAtivo.maPrincipal;
+  inherited;
+end;
+
+procedure TF_Principal.FormShow(Sender: TObject);
+begin
+  inherited;
+  SetarImagem(TEnumListaImagens.liOlhoAberto, imageOlhoSaldoAtual);
+  SetarImagem(TEnumListaImagens.liOlhoAberto, ImageOlhoGastoMes);
+  SetarImagem(TEnumListaImagens.liOlhoAberto, ImageOlhoReceitasMes);
+end;
+
+procedure TF_Principal.OnExecutarAposConsultaGastoMensal(Retorno: Currency);
+begin
+  try
+    lblGastoMes.Text := 'R$ ' + FormatFloat('#,##0.00', Retorno);
+  finally
+    TLoading.Hide;
+  end;
+end;
+
+procedure TF_Principal.OnExecutarAposConsultaReceitaMensal(Retorno: Currency);
+begin
+  try
+    lblReceitasMes.Text := 'R$ ' + FormatFloat('#,##0.00', Retorno);
+  finally
+    TLoading.Hide;
+  end;
+end;
+
+procedure TF_Principal.OnExecutarAposConsultaSaldoTotal(Retorno: Currency);
+begin
+  try
+    lblSaldoAtual.Text := 'R$ ' + FormatFloat('#,##0.00', Retorno);
+  finally
+    TLoading.Hide;
+  end;
+end;
+
+procedure TF_Principal.SetarImagem(enumImagem: TEnumListaImagens;
+  objImagem: TImage);
+var
+  LSourceItem: TSourceItem;
+  LBitmap: TBitmap;
+begin
+  LSourceItem := TSourceItem(imageList.Source[Integer(enumImagem)]);
+
+  if LSourceItem = nil then
+    raise Exception.Create('Índice da lista de imagem não existe!');
+
+  LBitmap := LSourceItem.MultiResBitmap.Bitmaps[1.0];
+
+  if LBitmap = nil then
+    LBitmap := LSourceItem.MultiResBitmap.ItemByScale(1.0, True, true).Bitmap;
+
+  if LBitmap = nil then
+    raise Exception.Create('Nenhum bitmap disponível para esta imagem!');
+
+  objImagem.Bitmap.Assign(LBitmap);
+end;
+
+end.
+

@@ -16,15 +16,15 @@
     <Transaction>2024/06/09 21:09:38.000.686,C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Unit1.pas=D:\AppMinhasFinancas\trunk\Views\UF_Principal.pas</Transaction>
     <Transaction>2024/06/09 21:09:51.000.618,C:\Users\lucas\Documents\Embarcadero\Studio\Projects\Project1.dproj=D:\AppMinhasFinancas\trunk\MinhasFinancas.dproj</Transaction>
     <Transaction>2024/06/10 12:22:49.000.557,=D:\AppMinhasFinancas\trunk\Unit2.pas</Transaction>
-    <Transaction>2024/06/10 12:25:15.000.645,D:\AppMinhasFinancas\trunk\Views\Form Base\UF_BaseMenu.pas=D:\AppMinhasFinancas\trunk\Unit2.pas</Transaction>
     <Transaction>2024/06/10 12:25:15.000.645,D:\AppMinhasFinancas\trunk\Views\Form Base\UF_BaseMenu.fmx=D:\AppMinhasFinancas\trunk\Unit2.fmx</Transaction>
+    <Transaction>2024/06/10 12:25:15.000.645,D:\AppMinhasFinancas\trunk\Views\Form Base\UF_BaseMenu.pas=D:\AppMinhasFinancas\trunk\Unit2.pas</Transaction>
     <Transaction>2024/06/10 12:26:04.000.545,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/10 12:27:17.000.632,D:\AppMinhasFinancas\trunk\Views\UF_Principal.pas=</Transaction>
-    <Transaction>2024/06/10 12:28:03.000.736,D:\AppMinhasFinancas\trunk\Views\UF_Principal.pas=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/10 12:28:03.000.736,D:\AppMinhasFinancas\trunk\Views\UF_Principal.fmx=D:\AppMinhasFinancas\trunk\Unit1.fmx</Transaction>
+    <Transaction>2024/06/10 12:28:03.000.736,D:\AppMinhasFinancas\trunk\Views\UF_Principal.pas=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/12 21:40:13.000.319,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
-    <Transaction>2024/06/12 21:40:28.000.327,D:\AppMinhasFinancas\trunk\Views\Form Base\UF_BaseCadastro.fmx=D:\AppMinhasFinancas\trunk\Unit1.fmx</Transaction>
     <Transaction>2024/06/12 21:40:28.000.327,D:\AppMinhasFinancas\trunk\Views\Form Base\UF_BaseCadastro.pas=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
+    <Transaction>2024/06/12 21:40:28.000.327,D:\AppMinhasFinancas\trunk\Views\Form Base\UF_BaseCadastro.fmx=D:\AppMinhasFinancas\trunk\Unit1.fmx</Transaction>
     <Transaction>2024/06/12 21:50:24.000.645,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/12 21:50:48.000.277,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/12 22:02:30.000.098,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
@@ -75,16 +75,16 @@
     <Transaction>2024/06/16 00:16:55.000.392,D:\AppMinhasFinancas\trunk\Unit1.pas=D:\AppMinhasFinancas\trunk\Utils\funcoes.pas</Transaction>
     <Transaction>2024/06/17 20:16:15.000.398,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/17 20:16:28.000.183,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
-    <Transaction>2024/06/17 20:18:12.000.507,D:\AppMinhasFinancas\trunk\Views\UF_ConfiguracaoAPI.pas=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/17 20:18:12.000.507,D:\AppMinhasFinancas\trunk\Views\UF_ConfiguracaoAPI.fmx=D:\AppMinhasFinancas\trunk\Unit1.fmx</Transaction>
-    <Transaction>2024/08/10 13:11:39.000.240,=F:\AppMinhasFinancas\src\Views\UF_Login.pas</Transaction>
-    <Transaction>2024/08/10 13:11:39.000.457,=F:\AppMinhasFinancas\src\Views\UnitSplash.pas</Transaction>
-    <Transaction>2024/08/10 13:11:39.000.402,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTipoContasDetalhado.pas</Transaction>
-    <Transaction>2024/08/10 13:11:39.000.323,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTicoContas.pas</Transaction>
+    <Transaction>2024/06/17 20:18:12.000.507,D:\AppMinhasFinancas\trunk\Views\UF_ConfiguracaoAPI.pas=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/08/10 13:11:39.000.165,=F:\AppMinhasFinancas\src\Views\UF_CadDocumentos.pas</Transaction>
+    <Transaction>2024/08/10 13:11:39.000.457,=F:\AppMinhasFinancas\src\Views\UnitSplash.pas</Transaction>
+    <Transaction>2024/08/10 13:11:39.000.323,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTicoContas.pas</Transaction>
+    <Transaction>2024/08/10 13:11:39.000.240,=F:\AppMinhasFinancas\src\Views\UF_Login.pas</Transaction>
+    <Transaction>2024/08/10 13:11:39.000.402,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTipoContasDetalhado.pas</Transaction>
     <Transaction>2024/08/10 13:12:35.000.245,=F:\AppMinhasFinancas\src\Utils\Loading.pas</Transaction>
-    <Transaction>2024/08/10 13:12:55.000.135,=F:\AppMinhasFinancas\src\Frames\Frame.Legenda.pas</Transaction>
     <Transaction>2024/08/10 13:12:55.000.191,=F:\AppMinhasFinancas\src\Frames\Frame.TipoContaDetalhado.pas</Transaction>
+    <Transaction>2024/08/10 13:12:55.000.135,=F:\AppMinhasFinancas\src\Frames\Frame.Legenda.pas</Transaction>
     <Transaction>2024/08/10 13:13:12.000.449,=F:\AppMinhasFinancas\src\Controllers\Controller.Usuario.pas</Transaction>
     <Transaction>2024/08/10 13:13:20.000.483,=F:\AppMinhasFinancas\src\DAO\DAO.Usuario.pas</Transaction>
     <Transaction>2024/08/10 13:13:47.000.726,=F:\AppMinhasFinancas\src\Data\DTO\ULoginUsuario.pas</Transaction>
@@ -103,21 +103,37 @@
     <Transaction>2024/08/17 00:38:16.000.472,F:\AppMinhasFinancas\src\Views\UTeste.pas=</Transaction>
     <Transaction>2024/08/17 09:26:19.000.779,F:\AppMinhasFinancas\src\Views\MainFrm.pas=</Transaction>
     <Transaction>2024/08/17 09:30:41.000.056,=F:\AppMinhasFinancas\src\Views\MainFrm.pas</Transaction>
-    <Transaction>2024/08/17 09:32:50.000.043,F:\AppMinhasFinancas\src\Views\MainFrm.fmx=F:\AppMinhasFinancas\src\Views\UCamera.fmx</Transaction>
     <Transaction>2024/08/17 09:32:50.000.043,F:\AppMinhasFinancas\src\Views\MainFrm.pas=F:\AppMinhasFinancas\src\Views\UCamera.pas</Transaction>
+    <Transaction>2024/08/17 09:32:50.000.043,F:\AppMinhasFinancas\src\Views\MainFrm.fmx=F:\AppMinhasFinancas\src\Views\UCamera.fmx</Transaction>
     <Transaction>2024/08/17 09:42:27.000.213,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
     <Transaction>2024/08/17 09:42:55.000.826,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.pas</Transaction>
     <Transaction>2024/08/17 09:42:55.000.826,F:\AppMinhasFinancas\src\Unit1.fmx=F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.fmx</Transaction>
-    <Transaction>2024/08/17 09:43:21.000.752,F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.fmx=F:\AppMinhasFinancas\src\Views\UF_InformacoesUsuario.fmx</Transaction>
     <Transaction>2024/08/17 09:43:21.000.752,F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.pas=F:\AppMinhasFinancas\src\Views\UF_InformacoesUsuario.pas</Transaction>
+    <Transaction>2024/08/17 09:43:21.000.752,F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.fmx=F:\AppMinhasFinancas\src\Views\UF_InformacoesUsuario.fmx</Transaction>
     <Transaction>2024/08/17 09:50:02.000.921,F:\AppMinhasFinancas\src\Views\UF_PerfilUsuario.pas=</Transaction>
     <Transaction>2024/08/17 12:49:18.000.931,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
     <Transaction>2024/08/17 12:49:33.000.470,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Data\DTO\UAtualizaFoto.pas</Transaction>
-    <Transaction>2024/08/19 20:20:39.175,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
-    <Transaction>2024/08/19 20:20:54.151,F:\AppMinhasFinancas\src\Data\DTO\UUpdateUsuario.pas=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/19 20:20:39.000.175,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/19 20:20:54.000.151,F:\AppMinhasFinancas\src\Data\DTO\UUpdateUsuario.pas=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/21 20:41:42.000.362,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/21 20:41:54.000.710,F:\AppMinhasFinancas\src\DAO\DAO.SaldoMensal.pas=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/21 21:15:40.000.129,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/21 21:15:49.000.247,F:\AppMinhasFinancas\src\Controllers\Controller.SaldoMensal.pas=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/21 23:53:21.000.812,F:\AppMinhasFinancas\src\Controllers\Controller.Saldo.pas=F:\AppMinhasFinancas\src\Controllers\Controller.SaldoMensal.pas</Transaction>
+    <Transaction>2024/08/21 23:53:32.000.453,F:\AppMinhasFinancas\src\DAO\DAO.Saldo.pas=F:\AppMinhasFinancas\src\DAO\DAO.SaldoMensal.pas</Transaction>
+    <Transaction>2024/08/24 01:30:17.000.185,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/24 01:32:46.000.907,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\DAO\DAO.Gastos.pas</Transaction>
+    <Transaction>2024/08/24 01:35:41.000.183,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/24 01:35:58.000.042,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Controllers\Controller.Gastos.pas</Transaction>
+    <Transaction>2024/08/24 02:35:33.000.573,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/24 02:35:44.000.912,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\DAO\DAO.Receitas.pas</Transaction>
+    <Transaction>2024/08/24 02:36:48.000.732,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/24 02:36:58.000.012,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Controllers\Controller.Receitas.pas</Transaction>
+    <Transaction>2024/08/24 02:59:40.000.463,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/24 03:00:18.000.628,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Views\Helpers\HelperLabel.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android64="" Android="127.0.0.1:5555"/>
+		<NoProfile iOSSimulator="iPhone5" Android64="127.0.0.1:5555" Android="127.0.0.1:5555"/>
 	</ActiveMobileDevice>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="activity-1.1.0.dex.jar"/>
@@ -283,6 +299,9 @@
     <File Path="Controllers\Controller.FormasDePagamento.pas"/>
     <File Path="Controllers\Controller.TipoDeContas.pas"/>
     <File Path="Controllers\Controller.Usuario.pas"/>
+    <File Path="Controllers\Controller.Saldo.pas"/>
+    <File Path="Controllers\Controller.Gastos.pas"/>
+    <File Path="Controllers\Controller.Receitas.pas"/>
     <File Path="DAO"/>
     <File Path="DAO\Interfaces"/>
     <File Path="DAO\Interfaces\UIDAODocumentos.pas"/>
@@ -292,6 +311,9 @@
     <File Path="DAO\DAO.FormasDePagamento.pas"/>
     <File Path="DAO\DAO.TipoDeConta.pas"/>
     <File Path="DAO\DAO.Usuario.pas"/>
+    <File Path="DAO\DAO.Saldo.pas"/>
+    <File Path="DAO\DAO.Gastos.pas"/>
+    <File Path="DAO\DAO.Receitas.pas"/>
     <File Path="Data"/>
     <File Path="Data\DTO"/>
     <File Path="Data\DTO\UCreateUsuario.pas"/>
@@ -321,6 +343,8 @@
     <File Path="Views\Form Base\UF_BaseCadastro.fmx"/>
     <File Path="Views\Form Base\UF_BaseMenu.pas"/>
     <File Path="Views\Form Base\UF_BaseMenu.fmx"/>
+    <File Path="Views\Helpers"/>
+    <File Path="Views\Helpers\HelperLabel.pas"/>
     <File Path="Views\UCamera.pas"/>
     <File Path="Views\UCamera.fmx"/>
     <File Path="Views\UF_Cadastros.pas"/>

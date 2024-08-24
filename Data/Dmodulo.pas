@@ -22,6 +22,7 @@ TConfigREST = class
   public
     constructor Create(const ABaseURL: string);
     destructor Destroy; override;
+    function GetValor(const AEndpoint: string): TRestResponse; overload;
     function Get(const AEndpoint: string): TJSONValue; overload;
     function Get(const AEndpoint, AParametro: string): TJSONObject; overload;
     function Post(const AEndpoint: string; const ABody: TJSONObject;
@@ -67,7 +68,7 @@ var
   HashUser: string;
 
 const URL_BASE_API_RELEASE = 'https://185.225.22.80:5001';
-const URL_BASE_API_DEBUG   = 'https://192.168.56.1:5001';
+const URL_BASE_API_DEBUG   = 'https://192.168.3.72:5001';
 
 implementation
 
@@ -161,6 +162,22 @@ begin
     FRequest.AddParameter('Authorization', 'Bearer ' + hashUser, TRESTRequestParameterKind.pkHTTPHEADER, [poDoNotEncode]);
     FRequest.Execute;
     Result := TJSONObject.ParseJSONValue(FResponse.Content) as TJSONObject;
+  finally
+    ResetRequest;
+    FCriticalSection.Leave;
+  end;
+end;
+
+function TConfigREST.GetValor(const AEndpoint: string): TRestResponse;
+begin
+  FCriticalSection.Enter;
+  try
+    FRequest.Resource := AEndpoint;
+    FRequest.Method := rmGET;
+    FRequest.Params.Clear;
+    FRequest.AddParameter('Authorization', 'Bearer ' + hashUser, TRESTRequestParameterKind.pkHTTPHEADER, [poDoNotEncode]);
+    FRequest.Execute;
+    Result := FResponse;
   finally
     ResetRequest;
     FCriticalSection.Leave;

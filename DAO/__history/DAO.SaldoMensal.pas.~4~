@@ -1,0 +1,25 @@
+unit DAO.SaldoMensal;
+
+interface
+
+type
+  TDAOSaldoMensal = class
+  private
+
+  public
+    function GetSaldoTotal(): Currency;
+end;
+implementation
+
+uses
+  Dmodulo, System.JSON, System.SysUtils;
+
+{ TDAOSaldoMensal }
+
+function TDAOSaldoMensal.GetSaldoTotal: Currency;
+begin
+  Result := StrToCurrDef
+    (DmPrincipal.Configuracoes.ConfigREST.GetValor('SaldoMensal/SaltoTotal').Content, 0);
+end;
+
+end.

@@ -43,7 +43,14 @@ uses
   UCamera in 'Views\UCamera.pas' {F_Camera},
   UF_InformacoesUsuario in 'Views\UF_InformacoesUsuario.pas' {F_InformacoesUsuario},
   UAtualizaFoto in 'Data\DTO\UAtualizaFoto.pas',
-  UUpdateUsuario in 'Data\DTO\UUpdateUsuario.pas';
+  UUpdateUsuario in 'Data\DTO\UUpdateUsuario.pas',
+  DAO.Saldo in 'DAO\DAO.Saldo.pas',
+  Controller.Saldo in 'Controllers\Controller.Saldo.pas',
+  DAO.Gastos in 'DAO\DAO.Gastos.pas',
+  Controller.Gastos in 'Controllers\Controller.Gastos.pas',
+  DAO.Receitas in 'DAO\DAO.Receitas.pas',
+  Controller.Receitas in 'Controllers\Controller.Receitas.pas',
+  HelperLabel in 'Views\Helpers\HelperLabel.pas';
 
 {$R *.res}
 
