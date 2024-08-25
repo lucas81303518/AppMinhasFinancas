@@ -320,7 +320,8 @@ end;
 
 destructor TConfiguracoes.Destroy;
 begin
-  FConfigREST.Free;
+  FArquivoIni.Destroy;
+  FConfigREST.Destroy;
   inherited;
 end;
 
@@ -328,14 +329,17 @@ function TConfiguracoes.GetUsuarioLembrar: string;
 begin
   Result := FUsuarioLembrar;
 end;
+
 function TConfiguracoes.GetSenhaLembrar: string;
 begin
   Result := FSenhaLembrar;
 end;
+
 procedure TConfiguracoes.SetUsuarioLembrar(const Value: string);
 begin
   FUsuarioLembrar := TNetEncoding.Base64.Encode(Value);
 end;
+
 procedure TConfiguracoes.Salvar;
 begin
   FArquivoIni.WriteBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', LembrarDeMim);
@@ -347,6 +351,7 @@ procedure TConfiguracoes.SetSenhaLembrar(const Value: string);
 begin
   FSenhaLembrar := TNetEncoding.Base64.Encode(Value);
 end;
+
 procedure TConfiguracoes.Carregar;
 begin
   {$IFDEF DEBUG}
@@ -354,9 +359,11 @@ begin
   {$ELSE}
     FConfigREST := TConfigREST.Create(URL_BASE_API_RELEASE);
   {$ENDIF}
-  LembrarDeMim := FArquivoIni.ReadBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', False);
-  FUsuarioLembrar := TNetEncoding.Base64.Decode(FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'UsuarioLembrar', ''));
-  FSenhaLembrar := TNetEncoding.Base64.Decode(FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'SenhaLembrar', ''));
+  LembrarDeMim    := FArquivoIni.ReadBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', False);
+  FUsuarioLembrar := TNetEncoding.Base64.Decode
+    (FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'UsuarioLembrar', ''));
+  FSenhaLembrar   := TNetEncoding.Base64.Decode
+    (FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'SenhaLembrar', ''));
 end;
 
 procedure TDmPrincipal.DataModuleCreate(Sender: TObject);
@@ -368,9 +375,7 @@ begin
   FEmail := TEmail.Create;
 end;
 
-
 { TEmail }
-
 procedure TEmail.EnviarEmail(email, nome, assunto, texto: string);
 var
   retorno: Boolean;

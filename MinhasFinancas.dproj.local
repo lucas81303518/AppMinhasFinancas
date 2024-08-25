@@ -37,8 +37,8 @@
     <Transaction>2024/06/15 14:33:46.000.674,D:\AppMinhasFinancas\trunk\Unit1.fmx=D:\AppMinhasFinancas\trunk\Views\UF_CadTipoDeConta.fmx</Transaction>
     <Transaction>2024/06/15 14:33:46.000.674,D:\AppMinhasFinancas\trunk\Unit1.pas=D:\AppMinhasFinancas\trunk\Views\UF_CadTipoDeConta.pas</Transaction>
     <Transaction>2024/06/15 14:42:37.000.775,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
-    <Transaction>2024/06/15 14:43:09.000.540,D:\AppMinhasFinancas\trunk\Unit1.pas=D:\AppMinhasFinancas\trunk\Data\Dmodulo.pas</Transaction>
     <Transaction>2024/06/15 14:43:09.000.540,D:\AppMinhasFinancas\trunk\Unit1.dfm=D:\AppMinhasFinancas\trunk\Data\Dmodulo.dfm</Transaction>
+    <Transaction>2024/06/15 14:43:09.000.540,D:\AppMinhasFinancas\trunk\Unit1.pas=D:\AppMinhasFinancas\trunk\Data\Dmodulo.pas</Transaction>
     <Transaction>2024/06/15 15:27:10.000.429,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/15 15:27:26.000.942,D:\AppMinhasFinancas\trunk\Unit1.pas=D:\AppMinhasFinancas\trunk\Models\Model.TipoDeConta.pas</Transaction>
     <Transaction>2024/06/15 15:30:53.000.220,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
@@ -77,11 +77,11 @@
     <Transaction>2024/06/17 20:16:28.000.183,=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
     <Transaction>2024/06/17 20:18:12.000.507,D:\AppMinhasFinancas\trunk\Views\UF_ConfiguracaoAPI.fmx=D:\AppMinhasFinancas\trunk\Unit1.fmx</Transaction>
     <Transaction>2024/06/17 20:18:12.000.507,D:\AppMinhasFinancas\trunk\Views\UF_ConfiguracaoAPI.pas=D:\AppMinhasFinancas\trunk\Unit1.pas</Transaction>
-    <Transaction>2024/08/10 13:11:39.000.402,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTipoContasDetalhado.pas</Transaction>
     <Transaction>2024/08/10 13:11:39.000.240,=F:\AppMinhasFinancas\src\Views\UF_Login.pas</Transaction>
+    <Transaction>2024/08/10 13:11:39.000.457,=F:\AppMinhasFinancas\src\Views\UnitSplash.pas</Transaction>
+    <Transaction>2024/08/10 13:11:39.000.402,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTipoContasDetalhado.pas</Transaction>
     <Transaction>2024/08/10 13:11:39.000.323,=F:\AppMinhasFinancas\src\Views\UF_RelatorioTicoContas.pas</Transaction>
     <Transaction>2024/08/10 13:11:39.000.165,=F:\AppMinhasFinancas\src\Views\UF_CadDocumentos.pas</Transaction>
-    <Transaction>2024/08/10 13:11:39.000.457,=F:\AppMinhasFinancas\src\Views\UnitSplash.pas</Transaction>
     <Transaction>2024/08/10 13:12:35.000.245,=F:\AppMinhasFinancas\src\Utils\Loading.pas</Transaction>
     <Transaction>2024/08/10 13:12:55.000.191,=F:\AppMinhasFinancas\src\Frames\Frame.TipoContaDetalhado.pas</Transaction>
     <Transaction>2024/08/10 13:12:55.000.135,=F:\AppMinhasFinancas\src\Frames\Frame.Legenda.pas</Transaction>
@@ -103,11 +103,11 @@
     <Transaction>2024/08/17 00:38:16.000.472,F:\AppMinhasFinancas\src\Views\UTeste.pas=</Transaction>
     <Transaction>2024/08/17 09:26:19.000.779,F:\AppMinhasFinancas\src\Views\MainFrm.pas=</Transaction>
     <Transaction>2024/08/17 09:30:41.000.056,=F:\AppMinhasFinancas\src\Views\MainFrm.pas</Transaction>
-    <Transaction>2024/08/17 09:32:50.000.043,F:\AppMinhasFinancas\src\Views\MainFrm.pas=F:\AppMinhasFinancas\src\Views\UCamera.pas</Transaction>
     <Transaction>2024/08/17 09:32:50.000.043,F:\AppMinhasFinancas\src\Views\MainFrm.fmx=F:\AppMinhasFinancas\src\Views\UCamera.fmx</Transaction>
+    <Transaction>2024/08/17 09:32:50.000.043,F:\AppMinhasFinancas\src\Views\MainFrm.pas=F:\AppMinhasFinancas\src\Views\UCamera.pas</Transaction>
     <Transaction>2024/08/17 09:42:27.000.213,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
-    <Transaction>2024/08/17 09:42:55.000.826,F:\AppMinhasFinancas\src\Unit1.fmx=F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.fmx</Transaction>
     <Transaction>2024/08/17 09:42:55.000.826,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.pas</Transaction>
+    <Transaction>2024/08/17 09:42:55.000.826,F:\AppMinhasFinancas\src\Unit1.fmx=F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.fmx</Transaction>
     <Transaction>2024/08/17 09:43:21.000.752,F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.fmx=F:\AppMinhasFinancas\src\Views\UF_InformacoesUsuario.fmx</Transaction>
     <Transaction>2024/08/17 09:43:21.000.752,F:\AppMinhasFinancas\src\Views\F_InformacoesUsuario.pas=F:\AppMinhasFinancas\src\Views\UF_InformacoesUsuario.pas</Transaction>
     <Transaction>2024/08/17 09:50:02.000.921,F:\AppMinhasFinancas\src\Views\UF_PerfilUsuario.pas=</Transaction>
@@ -132,19 +132,25 @@
     <Transaction>2024/08/24 02:59:40.000.463,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
     <Transaction>2024/08/24 03:00:18.000.628,F:\AppMinhasFinancas\src\Unit1.pas=F:\AppMinhasFinancas\src\Views\Helpers\HelperLabel.pas</Transaction>
     <Transaction>2024/08/24 11:27:13.000.884,F:\AppMinhasFinancas\src\Views\UF_ConfiguracaoAPI.pas=</Transaction>
-    <Transaction>2024/08/24 16:47:59.285,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
-    <Transaction>2024/08/24 18:21:45.677,=F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libcrypto-1_1.so</Transaction>
-    <Transaction>2024/08/24 18:21:45.702,=F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libssl-1_1.so</Transaction>
-    <Transaction>2024/08/24 19:25:50.862,F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libcrypto-1_1.so=</Transaction>
-    <Transaction>2024/08/24 19:25:54.138,F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libssl-1_1.so=</Transaction>
-    <Transaction>2024/08/24 19:26:27.997,=F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so</Transaction>
-    <Transaction>2024/08/24 19:26:28.101,=F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so</Transaction>
-    <Transaction>2024/08/25 00:35:21.955,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
-    <Transaction>2024/08/25 00:41:31.092,F:\AppMinhasFinancas\src\Views\UF_ConfirmacaoEmail.pas=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
-    <Transaction>2024/08/25 00:41:31.092,F:\AppMinhasFinancas\src\Views\UF_ConfirmacaoEmail.fmx=F:\AppMinhasFinancas\src\Unit1.fmx</Transaction>
+    <Transaction>2024/08/24 16:47:59.000.285,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/24 18:21:45.000.677,=F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libcrypto-1_1.so</Transaction>
+    <Transaction>2024/08/24 18:21:45.000.702,=F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libssl-1_1.so</Transaction>
+    <Transaction>2024/08/24 19:25:50.000.862,F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libcrypto-1_1.so=</Transaction>
+    <Transaction>2024/08/24 19:25:54.000.138,F:\trunk2\Exemplos\ACBrTCP\ACBrMail\Delphi\MailTeste\libssl-1_1.so=</Transaction>
+    <Transaction>2024/08/24 19:26:27.000.997,=F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so</Transaction>
+    <Transaction>2024/08/24 19:26:28.000.101,=F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so</Transaction>
+    <Transaction>2024/08/25 00:35:21.000.955,=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/25 00:41:31.000.092,F:\AppMinhasFinancas\src\Views\UF_ConfirmacaoEmail.fmx=F:\AppMinhasFinancas\src\Unit1.fmx</Transaction>
+    <Transaction>2024/08/25 00:41:31.000.092,F:\AppMinhasFinancas\src\Views\UF_ConfirmacaoEmail.pas=F:\AppMinhasFinancas\src\Unit1.pas</Transaction>
+    <Transaction>2024/08/25 14:07:08.551,F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so=</Transaction>
+    <Transaction>2024/08/25 14:07:11.699,F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so=</Transaction>
+    <Transaction>2024/08/25 14:07:31.841,=F:\AppMinhasFinancas\src\libcrypto.so</Transaction>
+    <Transaction>2024/08/25 14:07:31.862,=F:\AppMinhasFinancas\src\libssl.so</Transaction>
+    <Transaction>2024/08/25 14:08:21.277,=F:\AppMinhasFinancas\src\DLL(so)\libcrypto.so</Transaction>
+    <Transaction>2024/08/25 14:08:21.299,=F:\AppMinhasFinancas\src\DLL(so)\libssl.so</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android64="127.0.0.1:5555" Android="127.0.0.1:5555"/>
+		<NoProfile iOSSimulator="iPhone5" Android64="" Android="127.0.0.1:5555"/>
 	</ActiveMobileDevice>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="activity-1.1.0.dex.jar"/>
@@ -334,6 +340,9 @@
     <File Path="Data\DTO\UUpdateUsuario.pas"/>
     <File Path="Data\Dmodulo.pas"/>
     <File Path="Data\Dmodulo.dfm"/>
+    <File Path="DLL(so)"/>
+    <File Path="DLL(so)\libcrypto.so"/>
+    <File Path="DLL(so)\libssl.so"/>
     <File Path="Frames"/>
     <File Path="Frames\Frame.Legenda.pas"/>
     <File Path="Frames\Frame.Legenda.fmx"/>
@@ -380,15 +389,5 @@
     <File Path="Views\UnitSplash.fmx"/>
     <File Path="Views\UF_ConfirmacaoEmail.pas"/>
     <File Path="Views\UF_ConfirmacaoEmail.fmx"/>
-    <File Path="F:"/>
-    <File Path="F:\trunk2"/>
-    <File Path="F:\trunk2\DLLs"/>
-    <File Path="F:\trunk2\DLLs\Android"/>
-    <File Path="F:\trunk2\DLLs\Android\OpenSSL"/>
-    <File Path="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d"/>
-    <File Path="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi"/>
-    <File Path="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic"/>
-    <File Path="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so"/>
-    <File Path="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so"/>
   </ProjectSortOrder>
 </BorlandProject>

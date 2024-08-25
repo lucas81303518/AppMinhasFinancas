@@ -55,6 +55,9 @@ type
     procedure AoAlterarUsuario(retorno: TObject);
     procedure AoAtualizarImagem(retorno: TObject);
     function ValidarCampos(): Boolean;
+    procedure ExecutarAposConfirmarCodigo(CodigoConfirmado: Boolean);
+    procedure ExecutarAposVerificacaoEmailExiste(Sender: TObject);
+    procedure ExecutarAposEnviarEmailComCodigoVerificacao(Retorno: Boolean);
     { Private declarations }
   public
     { Public declarations }
@@ -66,7 +69,8 @@ var
 implementation
 
 uses
-  UReadUsuario, funcoes, UCamera, Loading, Dmodulo;
+  UReadUsuario, funcoes, UCamera, Loading, Dmodulo,
+  UF_ConfirmacaoEmail;
 
 {$R *.fmx}
 
@@ -121,6 +125,69 @@ begin
   F_Camera.Show;
 end;
 
+procedure TF_InformacoesUsuario.ExecutarAposConfirmarCodigo(CodigoConfirmado: Boolean);
+begin
+  if not CodigoConfirmado then
+  begin
+    ShowMessage('Código enviado no e-mail não foi confirmado!');
+    Exit;
+  end;
+
+  TLoading.Show('Atualizando informações do usuário...');
+  var Usuario: TUpdateUsuario;
+  Usuario := TUpdateUsuario.Create;
+  Usuario.NomeCompleto   := edtNome.Text;
+  Usuario.Email          := edtEmail.Text;
+  Usuario.DataNascimento := DateEditdataNascimento.Date;
+  Usuario.PhoneNumber    := EditContato.Text;
+
+  FControllerUsuario.OnExecutarAposAlterarUsuario := AoAlterarUsuario;
+  FControllerUsuario.AlterarUsuario(Usuario);
+end;
+
+procedure TF_InformacoesUsuario.ExecutarAposEnviarEmailComCodigoVerificacao(
+  Retorno: Boolean);
+begin
+  try
+    if not Retorno then
+    begin
+      ShowMessage('Falha no envio do e-mail, verifique o e-mail e sua conexão com internet!');
+      Exit;
+    end;
+
+    F_ConfirmacaoEmail := TF_ConfirmacaoEmail.Create(nil);
+    F_ConfirmacaoEmail.Email := edtEmail.Text;
+    F_ConfirmacaoEmail.OnExecutarAposConfirmacaco := ExecutarAposConfirmarCodigo;
+    F_ConfirmacaoEmail.Show;
+  finally
+    TLoading.Hide;
+  end;
+end;
+
+procedure TF_InformacoesUsuario.ExecutarAposVerificacaoEmailExiste(
+  Sender: TObject);
+var
+  EmailJaExiste: Boolean;
+begin
+  try
+    EmailJaExiste := Boolean(Sender);
+
+    if EmailJaExiste then
+    begin
+      ShowMessage('Email já está sendo utilizado na base de dados!');
+      edtEmail.SetFocus;
+      Exit;
+    end;
+  finally
+    TLoading.Hide;
+  end;
+
+  TLoading.Show('Enviando código de verificação...', F_InformacoesUsuario);
+  DmPrincipal.FEmail.OnExecutarAposEnvio := ExecutarAposEnviarEmailComCodigoVerificacao;
+  DmPrincipal.FEmail.EnviarEmail(edtEmail.Text, edtNome.Text,
+   'Envio do código de verificação', '');
+end;
+
 procedure TF_InformacoesUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -153,6 +220,11 @@ begin
   inherited;
   if (LayoutNome.Enabled) then
   begin
+    lblNomeUsuario.Text := DmPrincipal.Usuario.UserName;
+    edtNome.Text  := DmPrincipal.Usuario.NomeCompleto;
+    edtEmail.Text := DmPrincipal.Usuario.Email;
+    DateEditdataNascimento.Date := DmPrincipal.Usuario.DataNascimento;
+    EditContato.Text := DmPrincipal.Usuario.PhoneNumber;
     SetaEnabledComponentes(False);
   end;
 end;
@@ -190,16 +262,24 @@ begin
   if not ValidarCampos() then
     Exit;
 
-  TLoading.Show('Atualizando informações do usuário...');
-  var Usuario: TUpdateUsuario;
-  Usuario := TUpdateUsuario.Create;
-  Usuario.NomeCompleto   := edtNome.Text;
-  Usuario.Email          := edtEmail.Text;
-  Usuario.DataNascimento := DateEditdataNascimento.Date;
-  Usuario.PhoneNumber    := EditContato.Text;
+  if DmPrincipal.Usuario.Email <> edtEmail.Text then
+  begin
+    FControllerUsuario.OnExecutarAposVerificacaoEmailExiste := ExecutarAposVerificacaoEmailExiste;
+    FControllerUsuario.EmailJaExiste(edtEmail.Text);
+  end
+  else
+  begin
+    TLoading.Show('Atualizando informações do usuário...');
+    var Usuario: TUpdateUsuario;
+    Usuario := TUpdateUsuario.Create;
+    Usuario.NomeCompleto   := edtNome.Text;
+    Usuario.Email          := edtEmail.Text;
+    Usuario.DataNascimento := DateEditdataNascimento.Date;
+    Usuario.PhoneNumber    := EditContato.Text;
 
-  FControllerUsuario.OnExecutarAposAlterarUsuario := AoAlterarUsuario;
-  FControllerUsuario.AlterarUsuario(Usuario);
+    FControllerUsuario.OnExecutarAposAlterarUsuario := AoAlterarUsuario;
+    FControllerUsuario.AlterarUsuario(Usuario);
+  end;
 end;
 
 procedure TF_InformacoesUsuario.SetaEnabledComponentes(Enabled: Boolean);

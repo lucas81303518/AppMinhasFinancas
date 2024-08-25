@@ -687,7 +687,7 @@ object F_Login: TF_Login
                 TabOrder = 1
               end
               object dataNasc: TDateEdit
-                Date = 45528.000000000000000000
+                Date = 45529.000000000000000000
                 TodayDefault = True
                 Align = Client
                 Margins.Left = 20.000000000000000000

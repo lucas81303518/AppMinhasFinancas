@@ -5,7 +5,7 @@
     </ProjectExtensions>
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'">127.0.0.1:5555</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='Android64'">127.0.0.1:5555</DeviceId>
+        <DeviceId Condition="'$(Platform)'=='Android64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
         <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
     </PropertyGroup>
@@ -61,7 +61,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android\Debug\strings.xml" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\branches\Android\Debug\strings.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\res\values\</RemoteDir>
             <RemoteName>strings.xml</RemoteName>
             <DeployClass>Android_Strings</DeployClass>
@@ -70,7 +70,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android\Debug\colors.xml" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\branches\Android\Debug\colors.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\res\values\</RemoteDir>
             <RemoteName>colors.xml</RemoteName>
             <DeployClass>Android_Colors</DeployClass>
@@ -241,20 +241,11 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android\Debug\AndroidManifest.xml" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\branches\Android\Debug\AndroidManifest.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\</RemoteDir>
             <RemoteName>AndroidManifest.xml</RemoteName>
             <DeployClass>ProjectAndroidManifest</DeployClass>
             <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MinhasFinancas\assets\internal\</RemoteDir>
-            <RemoteName>libssl.so</RemoteName>
-            <DeployClass>ProjectFile</DeployClass>
-            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -264,6 +255,15 @@
             <RemoteName>MinhasFinancas.classes</RemoteName>
             <DeployClass>AndroidClasses</DeployClass>
             <Operation>64</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="DLL(so)\libssl.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MinhasFinancas\assets\internal\</RemoteDir>
+            <RemoteName>libssl.so</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -305,7 +305,7 @@
             <Overwrite>True</Overwrite>
             <Required>True</Required>
         </DeployFile>
-        <DeployFile Include="Android\Debug\provider_paths.xml" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\branches\Android\Debug\provider_paths.xml" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\res\xml\</RemoteDir>
             <RemoteName>provider_paths.xml</RemoteName>
             <DeployClass>AndroidFileProvider</DeployClass>
@@ -413,11 +413,20 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android\Debug\MinhasFinancas.classes" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\branches\Android\Debug\MinhasFinancas.classes" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\classes\</RemoteDir>
             <RemoteName>MinhasFinancas.classes</RemoteName>
             <DeployClass>AndroidClasses</DeployClass>
             <Operation>64</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="DLL(so)\libcrypto.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MinhasFinancas\assets\internal\</RemoteDir>
+            <RemoteName>libcrypto.so</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
@@ -431,7 +440,7 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
-        <DeployFile Include="Android\Debug\libMinhasFinancas.so" Condition="'$(Config)'=='Debug'">
+        <DeployFile Include="..\branches\Android\Debug\libMinhasFinancas.so" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\library\lib\armeabi-v7a\</RemoteDir>
             <RemoteName>libMinhasFinancas.so</RemoteName>
             <DeployClass>ProjectOutput</DeployClass>
@@ -446,15 +455,6 @@
             <RemoteName>provider_paths.xml</RemoteName>
             <DeployClass>AndroidFileProvider</DeployClass>
             <Operation>1</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>MinhasFinancas\assets\internal\</RemoteDir>
-            <RemoteName>libcrypto.so</RemoteName>
-            <DeployClass>ProjectFile</DeployClass>
-            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
