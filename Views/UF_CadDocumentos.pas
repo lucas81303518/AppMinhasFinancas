@@ -38,6 +38,7 @@ type
     procedure recSalvarClick(Sender: TObject);
     procedure numberBoxValorClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     FControllerTipoContas: TControllerTipoDeContas;
@@ -133,6 +134,11 @@ begin
     FDocumento.Free;
   Action := TCloseAction.caFree;
   F_CadDocumentos := nil;
+end;
+
+procedure TF_CadDocumentos.FormCreate(Sender: TObject);
+begin
+  //teste123
 end;
 
 procedure TF_CadDocumentos.FormShow(Sender: TObject);

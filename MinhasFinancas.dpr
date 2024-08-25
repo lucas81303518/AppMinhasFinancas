@@ -23,7 +23,6 @@ uses
   DAO.Documento in 'DAO\DAO.Documento.pas',
   Controller.Documento in 'Controllers\Controller.Documento.pas',
   funcoes in 'Utils\funcoes.pas',
-  UF_ConfiguracaoAPI in 'Views\UF_ConfiguracaoAPI.pas' {F_ConfiguracaoAPI},
   UF_CadDocumentos in 'Views\UF_CadDocumentos.pas' {F_CadDocumentos},
   UF_Login in 'Views\UF_Login.pas' {F_Login},
   UF_RelatorioTicoContas in 'Views\UF_RelatorioTicoContas.pas' {F_RelatorioTipoContas},
@@ -50,7 +49,8 @@ uses
   Controller.Gastos in 'Controllers\Controller.Gastos.pas',
   DAO.Receitas in 'DAO\DAO.Receitas.pas',
   Controller.Receitas in 'Controllers\Controller.Receitas.pas',
-  HelperLabel in 'Views\Helpers\HelperLabel.pas';
+  HelperLabel in 'Views\Helpers\HelperLabel.pas',
+  UF_ConfirmacaoEmail in 'Views\UF_ConfirmacaoEmail.pas' {F_ConfirmacaoEmail};
 
 {$R *.res}
 

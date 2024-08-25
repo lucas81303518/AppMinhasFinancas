@@ -22,7 +22,6 @@ type
     RecGastoMes: TRectangle;
     Label2: TLabel;
     Rectangle3: TRectangle;
-    ImageOlhoGastoMes: TImage;
     lblGastoMes: TLabel;
     recMetas: TRectangle;
     Label3: TLabel;
@@ -30,9 +29,13 @@ type
     Rectangle2: TRectangle;
     Label4: TLabel;
     Rectangle4: TRectangle;
-    ImageOlhoReceitasMes: TImage;
     lblReceitasMes: TLabel;
     ImageList: TImageList;
+    LayoutOlhoSaldoAtual: TLayout;
+    LayoutOlhoGastosMes: TLayout;
+    imageOlhoGastoMes: TImage;
+    LayoutOlhoReceitasMes: TLayout;
+    imageOlhoReceitasMes: TImage;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
@@ -173,20 +176,14 @@ begin
     lbl.Text := StringOfChar('●', 4);
     lbl.Tag := Integer(TEnumListaImagens.liOlhoFechado);
   end;
-
   LSourceItem := TSourceItem(imageList.Source[Integer(lbl.Tag)]);
-
   if LSourceItem = nil then
     raise Exception.Create('Índice da lista de imagem não existe!');
-
   LBitmap := LSourceItem.MultiResBitmap.Bitmaps[1.0];
-
   if LBitmap = nil then
     LBitmap := LSourceItem.MultiResBitmap.ItemByScale(1.0, True, True).Bitmap;
-
   if LBitmap = nil then
     raise Exception.Create('Nenhum bitmap disponível para esta imagem!');
-
   objImagem.Bitmap.Assign(LBitmap);
 end;
 

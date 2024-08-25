@@ -18,12 +18,14 @@ type
     FExecutarAposRecuperarUsuario: TExecutarAposGenerico;
     FExecutarAposAtualizar: TExecutarAposGenerico;
     FExecutarAposAlterarUsuario: TExecutarAposGenerico;
+    FExecutarAposVerificacaoEmailExiste: TExecutarAposGenerico;
   public
     function Login(DtoLogin: TLoginUsuario): string;
     function Cadastrar(DtoCreate: TCreateUsuario): Boolean;
     function RecuperarUsuario: TReadUsuariosDto;
     function AtualizaFotoUsuario(base64: string): Boolean;
     function AlterarUsuario(usuario: TUpdateUsuario): Boolean;
+    procedure EmailJaExiste(email: string);
     constructor Create;
     destructor Destroy;
 
@@ -32,6 +34,7 @@ type
     property OnExecutarAposRecuperarUsuario: TExecutarAposGenerico read FExecutarAposRecuperarUsuario write FExecutarAposRecuperarUsuario;
     property OnExecutarAposAtualizar: TExecutarAposGenerico read FExecutarAposAtualizar write FExecutarAposAtualizar;
     property OnExecutarAposAlterarUsuario: TExecutarAposGenerico read FExecutarAposAlterarUsuario write FExecutarAposAlterarUsuario;
+    property OnExecutarAposVerificacaoEmailExiste: TExecutarAposGenerico read FExecutarAposVerificacaoEmailExiste write FExecutarAposVerificacaoEmailExiste;
 end;
 
 implementation
@@ -169,6 +172,36 @@ destructor ControllerUsuario.Destroy;
 begin
   FDAOUsuario.Destroy;
   inherited;
+end;
+
+procedure ControllerUsuario.EmailJaExiste(email: string);
+var
+  Retorno: Boolean;
+begin
+  TTaskEx.Run(
+    procedure
+    begin
+      Retorno := FDAOUsuario.EmailJaExiste(email);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposVerificacaoEmailExiste) then
+                OnExecutarAposVerificacaoEmailExiste(TObject(retorno));
+            end;
+          end);
+        end
+    , NotOnCanceled);
 end;
 
 function ControllerUsuario.Login(DtoLogin: TLoginUsuario): string;

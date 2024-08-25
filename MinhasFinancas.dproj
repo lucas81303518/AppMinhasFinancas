@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Android</Platform>
         <TargetedPlatforms>693267</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -373,10 +373,6 @@
         <DCCReference Include="DAO\DAO.Documento.pas"/>
         <DCCReference Include="Controllers\Controller.Documento.pas"/>
         <DCCReference Include="Utils\funcoes.pas"/>
-        <DCCReference Include="Views\UF_ConfiguracaoAPI.pas">
-            <Form>F_ConfiguracaoAPI</Form>
-            <FormType>fmx</FormType>
-        </DCCReference>
         <DCCReference Include="Views\UF_CadDocumentos.pas">
             <Form>F_CadDocumentos</Form>
             <FormType>fmx</FormType>
@@ -432,6 +428,12 @@
         <DCCReference Include="DAO\DAO.Receitas.pas"/>
         <DCCReference Include="Controllers\Controller.Receitas.pas"/>
         <DCCReference Include="Views\Helpers\HelperLabel.pas"/>
+        <DCCReference Include="Views\UF_ConfirmacaoEmail.pas">
+            <Form>F_ConfirmacaoEmail</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <None Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so"/>
+        <None Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -767,6 +769,30 @@
                 <DeployFile LocalName="Android\Release\styles-v21.xml" Configuration="Release" Class="AndroidSplashStylesV21">
                     <Platform Name="Android">
                         <RemoteName>styles.xml</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Android">
+                        <RemoteDir>.\assets\internal\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

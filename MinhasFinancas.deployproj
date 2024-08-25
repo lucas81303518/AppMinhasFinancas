@@ -11,6 +11,24 @@
     </PropertyGroup>
     <ItemGroup Condition="'$(Platform)'=='OSX64'"/>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MinhasFinancas\</RemoteDir>
+            <RemoteName>libcrypto.so</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MinhasFinancas\</RemoteDir>
+            <RemoteName>libssl.so</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Win32\Debug\MinhasFinancas.exe" Condition="'$(Config)'=='Debug'">
             <RemoteDir>MinhasFinancas\</RemoteDir>
             <RemoteName>MinhasFinancas.exe</RemoteName>
@@ -232,6 +250,15 @@
             <RemoteCommand/>
             <Overwrite>True</Overwrite>
         </DeployFile>
+        <DeployFile Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libssl.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MinhasFinancas\assets\internal\</RemoteDir>
+            <RemoteName>libssl.so</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
         <DeployFile Include="Android\Release\MinhasFinancas.classes" Condition="'$(Config)'=='Release'">
             <RemoteDir>MinhasFinancas\classes\</RemoteDir>
             <RemoteName>MinhasFinancas.classes</RemoteName>
@@ -419,6 +446,15 @@
             <RemoteName>provider_paths.xml</RemoteName>
             <DeployClass>AndroidFileProvider</DeployClass>
             <Operation>1</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="F:\trunk2\DLLs\Android\OpenSSL\openssl-1.1.1d\arm-linux-androideabi\Dynamic\libcrypto.so" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>MinhasFinancas\assets\internal\</RemoteDir>
+            <RemoteName>libcrypto.so</RemoteName>
+            <DeployClass>ProjectFile</DeployClass>
+            <Operation>0</Operation>
             <LocalCommand/>
             <RemoteCommand/>
             <Overwrite>True</Overwrite>

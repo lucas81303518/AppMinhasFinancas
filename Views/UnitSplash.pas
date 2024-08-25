@@ -27,7 +27,7 @@ implementation
 
 {$R *.fmx}
 
-uses UF_Login, Loading, Dmodulo, UF_ConfiguracaoAPI, System.Threading;
+uses UF_Login, Loading, Dmodulo, System.Threading;
 
 procedure TFrmSplash.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

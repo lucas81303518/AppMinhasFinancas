@@ -1,0 +1,2 @@
+.\assets\internal\libssl.so
+.\assets\internal\libcrypto.so

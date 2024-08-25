@@ -15,6 +15,7 @@ type
     function RecuperarUsuario(): TReadUsuariosDto;
     function AtualizaFotoUsuario(base64: string): Boolean;
     function AlterarUsuario(usuario: TUpdateUsuario): Boolean;
+    function EmailJaExiste(email: string): Boolean;
 end;
 
 implementation
@@ -72,6 +73,15 @@ begin
       raise Exception.Create('Erro ao cadastrar usuário: ' + response.Content);
     Result := True;
   end;
+end;
+
+function TDAOUsuario.EmailJaExiste(email: string): Boolean;
+var
+  ValorStr: string;
+begin
+  ValorStr := DmPrincipal.Configuracoes.ConfigREST.GetValor
+  ('Usuario/EmailJaExiste?email=' + email).Content;
+  Result := StrToBoolDef(ValorStr, false);
 end;
 
 function TDAOUsuario.Login(DtoLogin: TLoginUsuario): string;

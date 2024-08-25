@@ -9,6 +9,7 @@ object F_Login: TF_Login
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnClose = FormClose
+  OnShow = FormShow
   OnVirtualKeyboardHidden = FormVirtualKeyboardHidden
   DesignerMasterStyle = 3
   object Rectangle1: TRectangle
@@ -133,7 +134,6 @@ object F_Login: TF_Login
                         Touch.InteractiveGestures = [LongTap, DoubleTap]
                         Align = Client
                         TabOrder = 1
-                        Text = 'Lucas'
                         Size.Width = 280.000000000000000000
                         Size.Height = 32.000000000000000000
                         Size.PlatformDefault = False
@@ -179,7 +179,6 @@ object F_Login: TF_Login
                         Align = Client
                         TabOrder = 2
                         Password = True
-                        Text = 'Samuel172839'
                         Size.Width = 284.000000000000000000
                         Size.Height = 32.000000000000000000
                         Size.PlatformDefault = False
@@ -192,7 +191,7 @@ object F_Login: TF_Login
                     Position.X = 8.000000000000000000
                     Position.Y = 166.000000000000000000
                     Size.Width = 154.000000000000000000
-                    Size.Height = 19.000000000000000000
+                    Size.Height = 30.000000000000000000
                     Size.PlatformDefault = False
                     TabOrder = 2
                     Text = 'Lembrar de mim'
@@ -395,11 +394,11 @@ object F_Login: TF_Login
           object VertScrollBox1: TVertScrollBox
             Align = Client
             Size.Width = 373.000000000000000000
-            Size.Height = 534.000000000000000000
+            Size.Height = 489.000000000000000000
             Size.PlatformDefault = False
             TabOrder = 3
             Viewport.Width = 373.000000000000000000
-            Viewport.Height = 534.000000000000000000
+            Viewport.Height = 489.000000000000000000
             object Layout3: TLayout
               Align = MostTop
               Margins.Bottom = 15.000000000000000000
@@ -472,7 +471,7 @@ object F_Login: TF_Login
                 Size.PlatformDefault = False
                 TextSettings.Font.Family = 'Century'
                 TextSettings.Font.Size = 14.000000000000000000
-                Text = 'Nome completo'
+                Text = '* Nome completo'
                 TabOrder = 1
               end
               object edtNomeCompleto: TEdit
@@ -508,7 +507,7 @@ object F_Login: TF_Login
                 Size.PlatformDefault = False
                 TextSettings.Font.Family = 'Century'
                 TextSettings.Font.Size = 14.000000000000000000
-                Text = 'Celular'
+                Text = '* Celular'
                 TabOrder = 1
               end
               object edtCelular: TEdit
@@ -577,7 +576,7 @@ object F_Login: TF_Login
                 Size.PlatformDefault = False
                 TextSettings.Font.Family = 'Century'
                 TextSettings.Font.Size = 14.000000000000000000
-                Text = 'Usu'#225'rio'
+                Text = '* Usu'#225'rio'
                 TabOrder = 1
               end
               object edtUsuarioCadastro: TEdit
@@ -612,7 +611,7 @@ object F_Login: TF_Login
                 Size.PlatformDefault = False
                 TextSettings.Font.Family = 'Century'
                 TextSettings.Font.Size = 14.000000000000000000
-                Text = 'Senha'
+                Text = '* Senha'
                 TabOrder = 1
               end
               object edtSenhaCadastro: TEdit
@@ -648,7 +647,7 @@ object F_Login: TF_Login
                 Size.PlatformDefault = False
                 TextSettings.Font.Family = 'Century'
                 TextSettings.Font.Size = 14.000000000000000000
-                Text = 'Repetir Senha'
+                Text = '* Repetir Senha'
                 TabOrder = 1
               end
               object edtRepetirSenha: TEdit
@@ -684,11 +683,11 @@ object F_Login: TF_Login
                 Size.PlatformDefault = False
                 TextSettings.Font.Family = 'Century'
                 TextSettings.Font.Size = 14.000000000000000000
-                Text = 'Data de nascimento'
+                Text = '* Data de nascimento'
                 TabOrder = 1
               end
               object dataNasc: TDateEdit
-                Date = 45523.000000000000000000
+                Date = 45528.000000000000000000
                 TodayDefault = True
                 Align = Client
                 Margins.Left = 20.000000000000000000
@@ -706,8 +705,8 @@ object F_Login: TF_Login
           object LayoutSalvar: TLayout
             Align = Bottom
             Margins.Top = 15.000000000000000000
-            Margins.Bottom = 15.000000000000000000
-            Position.Y = 549.000000000000000000
+            Margins.Bottom = 60.000000000000000000
+            Position.Y = 504.000000000000000000
             Size.Width = 373.000000000000000000
             Size.Height = 36.000000000000000000
             Size.PlatformDefault = False
