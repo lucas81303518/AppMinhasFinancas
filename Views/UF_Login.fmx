@@ -4,6 +4,7 @@ object F_Login: TF_Login
   Caption = 'Form1'
   ClientHeight = 600
   ClientWidth = 373
+  Position = ScreenCenter
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
@@ -687,7 +688,7 @@ object F_Login: TF_Login
                 TabOrder = 1
               end
               object dataNasc: TDateEdit
-                Date = 45529.000000000000000000
+                Date = 45537.000000000000000000
                 TodayDefault = True
                 Align = Client
                 Margins.Left = 20.000000000000000000

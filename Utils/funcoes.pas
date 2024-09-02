@@ -8,7 +8,7 @@ uses
   FMX.StdActns, FMX.Graphics,
   System.Classes, System.SysUtils, System.IOUtils,
   FMX.Objects, FMX.DialogService.Async,
-  FMX.Dialogs;
+  FMX.Dialogs, System.UITypes;
 
 type
   TMenuAcao = (taRelatorio, taHome, taCadastro);
@@ -16,12 +16,26 @@ type
   function BitmapToBase64(const Bitmap: TBitmap): string;
   function Base64ToBitmap(const Base64Str: string): TBitmap;
   function GetSelectedObject(combobox: TCombobox): TObject;
+  function CorEhEscura(BackgroundColor: TAlphaColor): Boolean;
   procedure Ajustar_Scroll(VScroll: TVertScrollBox; Formulario: TForm; foco: TControl);
 
 implementation
 
 uses
   System.Types, System.NetEncoding;
+
+function CorEhEscura(BackgroundColor: TAlphaColor): Boolean;
+var
+  R, G, B: Byte;
+  Luminance: Single;
+begin
+  R := TAlphaColorRec(BackgroundColor).R;
+  G := TAlphaColorRec(BackgroundColor).G;
+  B := TAlphaColorRec(BackgroundColor).B;
+  Luminance := (0.299 * R + 0.587 * G + 0.114 * B) / 255;
+
+  Result := Luminance < 0.5;
+end;
 
 function GetSelectedObject(combobox: TCombobox): TObject;
 begin

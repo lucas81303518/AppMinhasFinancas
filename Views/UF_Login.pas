@@ -337,7 +337,7 @@ begin
   begin
     DmPrincipal.Configuracoes.UsuarioLembrar := edtUsuario.Text;
     DmPrincipal.Configuracoes.SenhaLembrar   := edtSenha.Text;
-    DmPrincipal.Configuracoes.LembrarDeMim   := chkLembrarDeMim.IsChecked;
+    DmPrincipal.Configuracoes.LembrarDeMim   := True;
   end;
   DmPrincipal.Configuracoes.Salvar;
 end;

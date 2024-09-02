@@ -45,7 +45,7 @@ type
 
     function CalculaCentroGrafico: Single;
     procedure ConsultarDados;
-    procedure MontaGrafico(Dados: TObjectList<TReadTipoContaTotalDocs>);
+    procedure MontaGrafico(Dados: TObjectList<TObject>);
     procedure LimpaLayout(Layout: TLayout);
     procedure AddLegenda(TipoContaFrame: TTipoContaFrame);
   public
@@ -199,22 +199,25 @@ begin
   Close;
 end;
 
-procedure TF_RelatorioTipoContas.MontaGrafico(Dados: TObjectList<TReadTipoContaTotalDocs>);
+procedure TF_RelatorioTipoContas.MontaGrafico(Dados: TObjectList<TObject>);
 var
   pie1: TPie;
   TotalValor, Porcentagem: Currency;
   ValorAtual: Single;
+  listaDocs: TObjectList<TReadTipoContaTotalDocs>;
 begin
   try
+    listaDocs := TObjectList<TReadTipoContaTotalDocs>(Dados);
+
     TotalValor := 0;
     LimpaLayout(layoutGrafico);
 
-    for var Doc1: TReadTipoContaTotalDocs in Dados do
+    for var Doc1: TReadTipoContaTotalDocs in listaDocs do
       TotalValor := TotalValor + Doc1.ValorTotal;
 
     ValorAtual := 0;
     var Incrementador := 0;
-    for var Doc2: TReadTipoContaTotalDocs in Dados do
+    for var Doc2: TReadTipoContaTotalDocs in listaDocs do
     begin
       Porcentagem           := (Doc2.ValorTotal / TotalValor) * 100;
       pie1                  := TPie.Create(layoutGrafico);

@@ -8,7 +8,8 @@ uses
   FMX.Objects, FMX.Controls.Presentation, FMX.Layouts, FMX.ListBox, UF_BaseMenu,
   funcoes, System.Actions, FMX.ActnList, FMX.StdActns, FMX.MediaLibrary.Actions,
   Controller.Usuario, Controller.Saldo, Controller.Gastos, System.ImageList,
-  FMX.ImgList, Controller.Receitas;
+  FMX.ImgList, Controller.Receitas, Controller.Metas, System.Generics.Collections,
+  ReadMeta;
 
 type
   TEnumListaImagens = (liOlhoFechado, liOlhoAberto);
@@ -48,11 +49,20 @@ type
     FControllerSaldo: TControllerSaldo;
     FControllerGasto: TControllerGastos;
     FControllerReceitas: TControllerReceitas;
+    FControllerMetas: TControllerMetas;
 
+    procedure AdicionarMetaFrame(meta: TReadMeta);
     procedure SetarImagem(objImagem: TImage; lbl: TLabel);
     procedure OnExecutarAposConsultaSaldoTotal(Retorno: Currency);
     procedure OnExecutarAposConsultaGastoMensal(Retorno: Currency);
     procedure OnExecutarAposConsultaReceitaMensal(Retorno: Currency);
+    procedure OnExecutarAposConsultarMetas(Sender: TOBject);
+
+    {$IFDEF MSWINDOWS}
+      procedure OnClickFrameMeta(Sender: TObject);
+    {$ELSE}
+      procedure OnClickFrameMeta(Sender: TObject; const Point: TPointF);
+    {$ENDIF}
   public
     { Public declarations }
   end;
@@ -63,11 +73,45 @@ var
 implementation
 
 uses
-  Dmodulo, Loading, UReadUsuario, System.DateUtils;
+  Dmodulo, Loading, UReadUsuario, System.DateUtils,
+  Frame.MetasFormPrincipal, UF_DetalhesMeta;
 
 {$R *.fmx}
 
 { TF_Principal }
+{$IFDEF MSWINDOWS}
+  procedure TF_Principal.OnClickFrameMeta(Sender: TObject);
+{$ELSE}
+  procedure TF_Principal.OnClickFrameMeta(Sender: TObject; const Point: TPointF);
+{$ENDIF}
+begin
+  var FrameMeta: TFrameMetasFormPrincipal := TFrameMetasFormPrincipal(Sender);
+  if not Assigned(F_DetalhesMeta) then
+    F_DetalhesMeta := TF_DetalhesMeta.Create(nil, FrameMeta.Meta.Id);
+  F_DetalhesMeta.Show;
+end;
+
+procedure TF_Principal.AdicionarMetaFrame(meta: TReadMeta);
+var
+  FrameMetasFormPrincipal1: TFrameMetasFormPrincipal;
+  ItemLb: TListBoxItem;
+  Point: TPointF;
+begin
+  Itemlb := TListBoxItem.Create(lbMetas);
+  Itemlb.Height := 66;
+
+  FrameMetasFormPrincipal1 := TFrameMetasFormPrincipal.Create(ItemLb);
+  FrameMetasFormPrincipal1.Meta := meta;
+  FrameMetasFormPrincipal1.Porcentagem := Trunc((meta.ValorResultado / meta.ValorObjetivo) * 100);
+  {$IFDEF MSWINDOWS}
+    FrameMetasFormPrincipal1.OnClick := onClickFrameMeta;
+  {$ELSE}
+    FrameMetasFormPrincipal1.OnTap := onClickFrameMeta;
+  {$ENDIF}
+  ItemLb.AddObject(FrameMetasFormPrincipal1);
+  lbMetas.AddObject(ItemLb);
+end;
+
 procedure TF_Principal.FormActivate(Sender: TObject);
 begin
   inherited;
@@ -82,10 +126,15 @@ begin
   TLoading.Show('Atualizando receita Mensal...', F_Principal);
   FControllerReceitas.OnExecutarAposConsultaReceitaMensal := OnExecutarAposConsultaReceitaMensal;
   FControllerReceitas.RecuperarReceitaMensal(MonthOf(Now), YearOf(Now));
+
+  TLoading.Show('Atualizando metas...', F_Principal);
+  FControllerMetas.OnExecutarAposRecuperarMetas := OnExecutarAposConsultarMetas;
+  FControllerMetas.RecuperarMetas;
 end;
 
 procedure TF_Principal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  FControllerMetas.Free;
   FControllerSaldo.Free;
   FControllerGasto.Free;
   FControllerReceitas.Free;
@@ -95,6 +144,7 @@ end;
 
 procedure TF_Principal.FormCreate(Sender: TObject);
 begin
+  FControllerMetas := TControllerMetas.Create;
   FControllerSaldo := TControllerSaldo.Create;
   FControllerGasto := TControllerGastos.Create;
   FControllerReceitas := TControllerReceitas.Create;
@@ -146,6 +196,26 @@ begin
       lblReceitasMes.text := 'R$ ' + FormatFloat('#,##0.00', Retorno);
     lblReceitasMes.Hint := 'R$ ' + FormatFloat('#,##0.00', Retorno);
   finally
+    TLoading.Hide;
+  end;
+end;
+
+procedure TF_Principal.OnExecutarAposConsultarMetas(Sender: TOBject);
+begin
+  lbMetas.BeginUpdate;
+  try
+    lbMetas.Items.Clear;
+
+    if TObjectList<TReadMeta>(Sender).Count > 0 then
+    begin
+      for var meta: TReadMeta in TObjectList<TReadMeta>(Sender) do
+      begin
+        AdicionarMetaFrame(meta);
+      end;
+    end;
+
+  finally
+    lbMetas.EndUpdate;
     TLoading.Hide;
   end;
 end;

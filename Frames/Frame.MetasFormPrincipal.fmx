@@ -1,0 +1,62 @@
+object FrameMetasFormPrincipal: TFrameMetasFormPrincipal
+  Align = Client
+  Size.Width = 312.000000000000000000
+  Size.Height = 66.000000000000000000
+  Size.PlatformDefault = False
+  object Rectangle1: TRectangle
+    Align = Client
+    Fill.Color = xFFD1DCF8
+    HitTest = False
+    Margins.Left = 3.000000000000000000
+    Margins.Top = 3.000000000000000000
+    Margins.Right = 3.000000000000000000
+    Margins.Bottom = 3.000000000000000000
+    Size.Width = 306.000000000000000000
+    Size.Height = 60.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Color = xFF4B7AD4
+    Stroke.Thickness = 0.000000000000000000
+    XRadius = 15.000000000000000000
+    YRadius = 15.000000000000000000
+    object RectProgressBar: TRectangle
+      Align = Bottom
+      Fill.Color = claWhite
+      HitTest = False
+      Margins.Left = 12.000000000000000000
+      Margins.Right = 12.000000000000000000
+      Margins.Bottom = 8.000000000000000000
+      Position.X = 12.000000000000000000
+      Position.Y = 26.000000000000000000
+      Size.Width = 282.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Thickness = 0.000000000000000000
+      XRadius = 10.000000000000000000
+      YRadius = 10.000000000000000000
+      OnResize = RectProgressBarResize
+      object progressBar: TRectangle
+        Align = Left
+        Fill.Color = xFF2F6F2F
+        HitTest = False
+        Size.Width = 20.000000000000000000
+        Size.Height = 26.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+        XRadius = 10.000000000000000000
+        YRadius = 10.000000000000000000
+      end
+    end
+    object lblNomeMeta: TLabel
+      StyledSettings = [Family, Style]
+      Position.X = 16.000000000000000000
+      Position.Y = 4.000000000000000000
+      Size.Width = 211.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      TextSettings.WordWrap = False
+      Text = 'Nome da meta'
+      TabOrder = 3
+    end
+  end
+end

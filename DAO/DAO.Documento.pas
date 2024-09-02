@@ -4,7 +4,8 @@ interface
 
 uses
   Generics.Collections, Model.Documentos, UIDAODocumentos, System.JSON,
-  System.SysUtils, System.Classes, DateUtils, REST.Json;
+  System.SysUtils, System.Classes, DateUtils, REST.Json,
+  System.Generics.Collections, ReadDocumentos;
 
 type
   TDAODocumento = class(TInterfacedObject, IDAODocumento)
@@ -16,6 +17,7 @@ type
     function Update(Documento: TDocumento): Boolean;
     function ObterValoresPorPeriodo(Tipo: Integer; Status: string; DataIni, DataFim: TDateTime): TObjectList<TReadTipoContaTotalDocs>;
     function RelatorioDetalhadoTipoContas(Id: Integer; Status: string; DataIni, DataFim: TDateTime): TObjectList<TReadTipoContaTotalDocs>;
+    function ObterExtratoPorPeriodo(dataInicial, dataFinal: TDateTime): TObjectList<TReadDocumentos>;
 end;
 
 
@@ -49,6 +51,28 @@ end;
 function TDAODocumento.MontaObject(JSONObject: TJSONObject): TDocumento;
 begin
   Result := TJSOn.JsonToObject<TDocumento>(JSONObject);
+end;
+
+function TDAODocumento.ObterExtratoPorPeriodo(dataInicial,
+  dataFinal: TDateTime): TObjectList<TReadDocumentos>;
+var
+  JSONArray: TJSONArray;
+  JSONObject: TJSONObject;
+begin
+  Result := TObjectList<TReadDocumentos>.Create;
+
+  JSONArray := DmPrincipal.Configuracoes.ConfigREST
+        .Get('Documento/Extrato?dataIni=' + FormatDateTime('yyyy-mm-dd', dataInicial) +
+                                         '&dataFim=' + FormatDateTime('yyyy-mm-dd', dataFinal)
+                                         ) as TJSONArray;
+  if (JSONArray <> nil) and (JSONArray.Count > 0) then
+  begin
+    for var JSONValue: TJSONValue in JSONArray do
+    begin
+      JSONObject := TJSONObject(JSONValue);
+      Result.Add(TJSON.JsonToObject<TReadDocumentos>(JSONObject));
+    end;
+  end;
 end;
 
 function TDAODocumento.ObterValoresPorPeriodo(Tipo: Integer; Status: string;

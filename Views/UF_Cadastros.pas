@@ -27,6 +27,7 @@ type
     procedure recSaidasClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure recMetasClick(Sender: TObject);
   private
     { Private declarations }
 
@@ -41,7 +42,8 @@ implementation
 
 {$R *.fmx}
 
-uses UF_CadDocumentos, UF_CadTipoDeConta, UF_CadFormasPagamento;
+uses UF_CadDocumentos, UF_CadTipoDeConta, UF_CadFormasPagamento,
+     UF_CadastroMetas;
 
 procedure TF_Cadastros.FormActivate(Sender: TObject);
 begin
@@ -86,6 +88,13 @@ begin
     F_CadFormasPagamento := TF_CadFormasPagamento.Create(Self);
     F_CadFormasPagamento.Show;
   end;
+end;
+
+procedure TF_Cadastros.recMetasClick(Sender: TObject);
+begin
+  inherited;
+  F_CadastroMetas := TF_CadastroMetas.Create(nil);
+  F_CadastroMetas.Show;
 end;
 
 procedure TF_Cadastros.recSaidasClick(Sender: TObject);

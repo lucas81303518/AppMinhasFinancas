@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UF_BaseMenu, FMX.Controls.Presentation, FMX.Objects, Frame.Legenda,
-  Frame.TipoContaDetalhado,
+  Frame.Detalhes,
   FMX.Layouts, FMX.DateTimeCtrls, Controller.Documento, Model.documentos,
   System.Generics.Collections, FMX.ListBox;
 
@@ -46,7 +46,7 @@ type
     FtipoContaFrame: TTipoContaFrame;
     FControllerDocumento: TControllerDocumento;
     procedure ConsultaDados;
-    procedure MontaTela(Dados: TObjectList<TReadTipoContaTotalDocs>);
+    procedure MontaTela(Dados: TObjectList<TObject>);
     procedure AddItemRelatorio(Documento: TReadTipoContaTotalDocs);
     procedure CalculaWidthLayoutColuna;
   public
@@ -70,17 +70,17 @@ uses
 
 procedure TF_RelatorioTipoDeContasDetalhado.AddItemRelatorio(Documento: TReadTipoContaTotalDocs);
 var
-  Frame: TFrameTipoContaDetalhado;
+  Frame: TFrameDetalhes;
   ItemLb: TListBoxItem;
 begin
   Itemlb := TListBoxItem.Create(lbRelatorio);
   Itemlb.Margins.Left   := 5;
   Itemlb.Height := 38;
 
-  Frame := TFrameTipoContaDetalhado.Create(ItemLb);
-  Frame.lblData.Text      := FormatDateTime('dd/mm/yyyy', Documento.DataDocumento);
-  Frame.lblDescricao.Text := Documento.Descricao;
-  Frame.lblValor.Text     := 'R$ ' + FormatFloat('#,##.00', Documento.ValorTotal);
+  Frame := TFrameDetalhes.Create(ItemLb);
+  Frame.lblColuna1.Text := FormatDateTime('dd/mm/yyyy', Documento.DataDocumento);
+  Frame.lblColuna2.Text := Documento.Descricao;
+  Frame.lblColuna3.Text := 'R$ ' + FormatFloat('#,##.00', Documento.ValorTotal);
 
   ItemLb.AddObject(Frame);
   lbRelatorio.AddObject(ItemLb);
@@ -157,11 +157,14 @@ begin
   Close;
 end;
 
-procedure TF_RelatorioTipoDeContasDetalhado.MontaTela(Dados: TObjectList<TReadTipoContaTotalDocs>);
+procedure TF_RelatorioTipoDeContasDetalhado.MontaTela(Dados: TObjectList<TObject>);
 var
   Total: Currency;
+  listaDocs: TObjectList<TReadTipoContaTotalDocs>;
 begin
   try
+    listaDocs := TObjectList<TReadTipoContaTotalDocs>(Dados);
+
     Total := 0;
     lblTipoConta.Text       := FtipoContaFrame.TituloConta;
     lblTipoConta.FontColor  := FtipoContaFrame.Cor;
@@ -170,7 +173,7 @@ begin
 
     lbRelatorio.BeginUpdate;
     lbRelatorio.Clear;
-    for var Doc: TReadTipoContaTotalDocs in Dados do
+    for var Doc: TReadTipoContaTotalDocs in listaDocs do
     begin
       Total := Total + Doc.ValorTotal;
       AddItemRelatorio(Doc);

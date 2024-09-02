@@ -56,25 +56,23 @@ TConfigREST = class
 TConfiguracoes = class
   private
     FConfigREST: TConfigREST;
-    FArquivoIni: TIniFile;
     FLembrarDeMim: Boolean;
     FUsuarioLembrar: string;
     FSenhaLembrar: string;
+    FCaminhoArquivo: string;
 
-    function GetSenhaLembrar: string;
-    function GetUsuarioLembrar: string;
     procedure SetSenhaLembrar(const Value: string);
     procedure SetUsuarioLembrar(const Value: string);
   public
     property ConfigREST: TConfigREST read FConfigREST;
     property LembrarDeMim: Boolean read FLembrarDeMim write FLembrarDeMim;
-    property UsuarioLembrar: string read GetUsuarioLembrar write SetUsuarioLembrar;
-    property SenhaLembrar: string read GetSenhaLembrar write SetSenhaLembrar;
+    property UsuarioLembrar: string read FUsuarioLembrar write SetUsuarioLembrar;
+    property SenhaLembrar: string read FSenhaLembrar write SetSenhaLembrar;
 
     procedure Carregar;
     procedure Salvar;
     constructor Create();
-    destructor Destroy; override;
+    destructor Destroy;
   end;
 
   TDmPrincipal = class(TDataModule)
@@ -305,8 +303,6 @@ end;
 
 { TConfiguracoes }
 constructor TConfiguracoes.Create();
-var
-  FCaminhoArquivo: string;
 begin
   inherited Create;
   {$IFDEF MSWINDOWS}
@@ -314,25 +310,13 @@ begin
   {$ELSE}
     FCaminhoArquivo := TPath.Combine(TPath.GetDocumentsPath, 'Config.ini');
   {$ENDIF}
-  FArquivoIni := TIniFile.Create(FCaminhoArquivo);
   Carregar;
 end;
 
 destructor TConfiguracoes.Destroy;
 begin
-  FArquivoIni.Destroy;
   FConfigREST.Destroy;
-  inherited;
-end;
-
-function TConfiguracoes.GetUsuarioLembrar: string;
-begin
-  Result := FUsuarioLembrar;
-end;
-
-function TConfiguracoes.GetSenhaLembrar: string;
-begin
-  Result := FSenhaLembrar;
+  inherited Destroy;
 end;
 
 procedure TConfiguracoes.SetUsuarioLembrar(const Value: string);
@@ -341,10 +325,17 @@ begin
 end;
 
 procedure TConfiguracoes.Salvar;
+var
+  FArquivoIni: TInifile;
 begin
-  FArquivoIni.WriteBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', LembrarDeMim);
-  FArquivoIni.WriteString(SECAO_INFORMACOES_USUARIO, 'UsuarioLembrar', FUsuarioLembrar);
-  FArquivoIni.WriteString(SECAO_INFORMACOES_USUARIO, 'SenhaLembrar', FSenhaLembrar);
+  FArquivoIni := TInifile.Create(FCaminhoArquivo);
+  try
+    FArquivoIni.WriteBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', LembrarDeMim);
+    FArquivoIni.WriteString(SECAO_INFORMACOES_USUARIO, 'UsuarioLembrar', UsuarioLembrar);
+    FArquivoIni.WriteString(SECAO_INFORMACOES_USUARIO, 'SenhaLembrar', SenhaLembrar);
+  finally
+    FArquivoIni.Free;
+  end;
 end;
 
 procedure TConfiguracoes.SetSenhaLembrar(const Value: string);
@@ -353,17 +344,24 @@ begin
 end;
 
 procedure TConfiguracoes.Carregar;
+var
+  FArquivoIni: TIniFile;
 begin
   {$IFDEF DEBUG}
     FConfigREST := TConfigREST.Create(URL_BASE_API_DEBUG);
   {$ELSE}
     FConfigREST := TConfigREST.Create(URL_BASE_API_RELEASE);
   {$ENDIF}
-  LembrarDeMim    := FArquivoIni.ReadBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', False);
-  FUsuarioLembrar := TNetEncoding.Base64.Decode
-    (FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'UsuarioLembrar', ''));
-  FSenhaLembrar   := TNetEncoding.Base64.Decode
-    (FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'SenhaLembrar', ''));
+  FArquivoIni := TInifile.Create(FCaminhoArquivo);
+  try
+    LembrarDeMim    := FArquivoIni.ReadBool(SECAO_INFORMACOES_USUARIO, 'LembrarDeMim', false);
+    FUsuarioLembrar := TNetEncoding.Base64.Decode
+      (FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'UsuarioLembrar', ''));
+    FSenhaLembrar   := TNetEncoding.Base64.Decode
+      (FArquivoIni.ReadString(SECAO_INFORMACOES_USUARIO, 'SenhaLembrar', ''));
+  finally
+    FArquivoIni.Free;
+  end;
 end;
 
 procedure TDmPrincipal.DataModuleCreate(Sender: TObject);

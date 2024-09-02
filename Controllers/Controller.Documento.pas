@@ -4,18 +4,18 @@ interface
 
 uses
   Model.Documentos, Generics.Collections, UIDAODocumentos,
-  dao.Documento;
+  dao.Documento, ReadDocumentos;
 
 type
   TExecutarAposCadastro = procedure of object;
-  TExecutarAposConsultaRelatorioDetalhadoTipoContas =
-                          procedure (Retorno: TObjectList<TReadTipoContaTotalDocs>) of object;
+  TExecutarAposConsulta = procedure (Retorno: TObjectList<TObject>) of object;
 
 
   TControllerDocumento = class
   private
     FExecutarAposCadastro: TExecutarAposCadastro;
-    FExecutarAposConsultaRelatorioDetalhadoTipoContas: TExecutarAposConsultaRelatorioDetalhadoTipoContas;
+    FExecutarAposConsultaRelatorioDetalhadoTipoContas: TExecutarAposConsulta;
+    FExecutarAposConsultaExtrato: TExecutarAposConsulta;
 
     FIDAODocumento: IDAODocumento;
   public
@@ -24,8 +24,10 @@ type
     function Update(Documento: TDocumento): Boolean;
     procedure ObterValoresPorPeriodo(Tipo: Integer; Status: string; DataIni, DataFim: TDateTime);
     procedure RelatorioDetalhadoTipoContas(Id: Integer; Status: string; DataIni, DataFim: TDateTime);
+    procedure ObterExtratoPorPeriodo(dataInicial, dataFinal: TDateTime);
 
-    property OnExecutarAposConsulta: TExecutarAposConsultaRelatorioDetalhadoTipoContas read FExecutarAposConsultaRelatorioDetalhadoTipoContas write FExecutarAposConsultaRelatorioDetalhadoTipoContas;
+    property OnExecutarAposConsultaExtrato: TExecutarAposConsulta read FExecutarAposConsultaExtrato write FExecutarAposConsultaExtrato;
+    property OnExecutarAposConsulta: TExecutarAposConsulta read FExecutarAposConsultaRelatorioDetalhadoTipoContas write FExecutarAposConsultaRelatorioDetalhadoTipoContas;
     property OnExecutarAposCadastro: TExecutarAposCadastro read FExecutarAposCadastro write FExecutarAposCadastro;
 end;
 
@@ -71,6 +73,37 @@ begin
   FIDAODocumento := TDAODocumento.Create;
 end;
 
+procedure TControllerDocumento.ObterExtratoPorPeriodo(dataInicial,
+  dataFinal: TDateTime);
+var
+  Retorno: TObjectList<TReadDocumentos>;
+begin
+  TTaskEx.Run(
+    procedure
+    begin
+      Retorno := FIDAODocumento.ObterExtratoPorPeriodo(dataInicial, dataFinal);
+    end)
+    .ContinueWith(
+      procedure(const LTaskEx: ITaskEx)
+        begin
+          TThread.Synchronize(TThread.CurrentThread,
+          procedure
+          begin
+            if LTaskEx.Status = TTaskStatus.Exception then
+            begin
+              TLoading.Hide;
+              showmessage(LTaskEx.ExceptObj.ToString);
+            end
+            else if LTaskEx.Status = TTaskStatus.Completed then
+            begin
+              if Assigned(OnExecutarAposConsultaExtrato) then
+                OnExecutarAposConsultaExtrato(TObjectList<TObject>(Retorno));
+            end;
+          end);
+        end
+    , NotOnCanceled);
+end;
+
 procedure TControllerDocumento.ObterValoresPorPeriodo(Tipo: Integer;
   Status: string; DataIni,
   DataFim: TDateTime);
@@ -96,7 +129,7 @@ begin
             else if LTaskEx.Status = TTaskStatus.Completed then
             begin
               if Assigned(OnExecutarAposConsulta) then
-                OnExecutarAposConsulta(Retorno);
+                OnExecutarAposConsulta(TObjectList<TObject>(Retorno));
             end;
           end);
         end
@@ -127,7 +160,7 @@ begin
             else if LTaskEx.Status = TTaskStatus.Completed then
             begin
               if Assigned(OnExecutarAposConsulta) then
-                OnExecutarAposConsulta(Retorno);
+                OnExecutarAposConsulta(TObjectList<TObject>(Retorno));
             end;
           end);
         end
